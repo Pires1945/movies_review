@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:movies_review/models/user.dart';
 
 class Settings extends StatelessWidget {
   const Settings({super.key});

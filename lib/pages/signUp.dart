@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_review/utils/appRoutes.dart';
 import 'package:provider/provider.dart';
 
 import '../models/user.dart';
@@ -31,6 +32,8 @@ class _SignUpState extends State<SignUp> {
       _userData['email']!,
       _userData['password']!,
     );
+
+    Navigator.popAndPushNamed(context, AppRoutes.AUTHORHOME);
   }
 
   @override

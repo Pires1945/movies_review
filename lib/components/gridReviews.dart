@@ -15,6 +15,12 @@ class GridReviews extends StatefulWidget {
 
 class _GridReviewsState extends State<GridReviews> {
   @override
+  void initState() {
+    super.initState();
+    Provider.of<ReviewList>(context, listen: false).loadReviews();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ReviewList>(context);
     final List<Review> loadedReviews = provider.reviews;

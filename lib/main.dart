@@ -26,9 +26,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => MovieList()),
-        ChangeNotifierProvider(create: (context) => ReviewList()),
         ChangeNotifierProvider(create: (context) => User()),
+        ChangeNotifierProxyProvider<User, ReviewList>(
+          create: (context) => ReviewList(),
+          update: (context, value, previous) => ReviewList(
+            value.token ?? '',
+            value.userId ?? '',
+            previous?.reviews ?? [],
+          ),
+        ),
+        ChangeNotifierProvider(create: (context) => MovieList()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

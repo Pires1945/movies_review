@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -8,9 +9,24 @@ class User with ChangeNotifier {
   String? _token;
   String? _email;
   String? _userId;
+  DateTime? _expireDate;
+  Timer? _logoutTimer;
 
   bool get isAuth {
-    return _token != null;
+    final isValid = _expireDate?.isAfter(DateTime.now()) ?? false;
+    return _token != null && isValid;
+  }
+
+  String? get token {
+    return isAuth ? _token : null;
+  }
+
+  String? get email {
+    return isAuth ? _email : null;
+  }
+
+  String? get userId {
+    return isAuth ? _userId : null;
   }
 
   Future<void> _authenticate(
@@ -31,10 +47,15 @@ class User with ChangeNotifier {
 
     if (body['error'] == null) {
       _token = body['idToken'];
+      _email = body['email'];
+      _userId = body['localId'];
+      _expireDate = DateTime.now().add(Duration(
+        seconds: int.parse(body['expiresIn']),
+      ));
     }
 
-    print(_token);
-    print(isAuth);
+    // print(_token);
+    // print(isAuth);
     notifyListeners();
   }
 

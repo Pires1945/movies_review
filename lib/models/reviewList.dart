@@ -8,8 +8,16 @@ import 'package:movies_review/models/review.dart';
 import '../utils/constants.dart';
 
 class ReviewList extends ChangeNotifier {
-  final List<Review> _reviews = [];
+  final String _token;
+  final String _userId;
+  List<Review> _reviews = [];
   List<Review> get reviews => [..._reviews];
+
+  ReviewList([
+    this._token = '',
+    this._userId = '',
+    this._reviews = const [],
+  ]);
 
   Future<void> saveReview(Map<String, Object> data) async {
     bool hasId = data['id'] != null;
@@ -28,7 +36,7 @@ class ReviewList extends ChangeNotifier {
 
   Future<void> addReview(Review review) async {
     final response = await http.post(
-      Uri.parse('${Constants.reviewUrl}.json'),
+      Uri.parse('${Constants.reviewUrl}.json?auth=$_token'),
       body: jsonEncode({
         "movieTitle": review.movieTitle,
         "movieId": review.movieId,
@@ -52,10 +60,13 @@ class ReviewList extends ChangeNotifier {
 
   Future<void> loadReviews() async {
     _reviews.clear();
-    final response = await http.get(Uri.parse('${Constants.reviewUrl}.json'));
+    final response =
+        await http.get(Uri.parse('${Constants.reviewUrl}.json?auth=$_token'));
     if (response.body == 'null') return;
 
     Map<String, dynamic> data = jsonDecode(response.body);
+
+    print(response.body);
 
     data.forEach((key, value) {
       _reviews.add(
