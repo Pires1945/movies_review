@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:movies_review/components/widgetProvisorio.dart';
+import 'package:movies_review/components/bannerReviewCarousel.dart';
+import 'package:movies_review/models/reviewList.dart';
 import 'package:movies_review/utils/appRoutes.dart';
+import 'package:provider/provider.dart';
+
+import '../models/review.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,36 +15,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Widget> widgets = const [
-    Plano(
-      title: 'Usuário 1',
-      description:
-          'Mussum Ipsum, cacilds vidis litro abertis. Detraxit consequat et quo num tendi nada.Quem num gosta di mim que vai caçá sua turmis!Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis.',
-    ),
-    Plano(
-      title: 'Usuário 2',
-      description:
-          'Mussum Ipsum, cacilds vidis litro abertis. Detraxit consequat et quo num tendi nada.Quem num gosta di mim que vai caçá sua turmis!Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis.',
-    ),
-    Plano(
-      title: 'Usuário 3',
-      description:
-          'Mussum Ipsum, cacilds vidis litro abertis. Detraxit consequat et quo num tendi nada.Quem num gosta di mim que vai caçá sua turmis!Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis.',
-    ),
-    Plano(
-      title: 'Usuário 4',
-      description:
-          'Mussum Ipsum, cacilds vidis litro abertis. Detraxit consequat et quo num tendi nada.Quem num gosta di mim que vai caçá sua turmis!Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis.',
-    ),
-    Plano(
-      title: 'Usuário 5',
-      description:
-          'Mussum Ipsum, cacilds vidis litro abertis. Detraxit consequat et quo num tendi nada.Quem num gosta di mim que vai caçá sua turmis!Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis.',
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ReviewList>(context);
+    final List<Review> reviewList = provider.reviews;
+    List<Widget> widgets = [];
+
+    reviewList
+        .map((e) => widgets.add(BannerReviewCarousel(review: e)))
+        .toList();
+
     return Stack(
       children: [
         Container(

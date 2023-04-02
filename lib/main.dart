@@ -3,10 +3,14 @@ import 'package:movies_review/components/gridReviews.dart';
 import 'package:movies_review/components/movieGrid.dart';
 import 'package:movies_review/models/movieList.dart';
 import 'package:movies_review/models/reviewList.dart';
+import 'package:movies_review/models/user.dart';
+import 'package:movies_review/pages/authOrHome.dart';
 import 'package:movies_review/pages/homePage.dart';
+import 'package:movies_review/pages/login.dart';
 import 'package:movies_review/pages/movieDetail.dart';
 import 'package:movies_review/pages/reviewForm.dart';
 import 'package:movies_review/pages/settings.dart';
+import 'package:movies_review/pages/signUp.dart';
 import 'package:movies_review/utils/appRoutes.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +28,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => MovieList()),
         ChangeNotifierProvider(create: (context) => ReviewList()),
+        ChangeNotifierProvider(create: (context) => User()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -32,7 +37,8 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         routes: {
-          AppRoutes.HOME: (context) => HomePage(),
+          AppRoutes.AUTHORHOME: (context) => AuthOrHome(),
+          AppRoutes.SIGNUP: (context) => SignUp(),
           AppRoutes.SETTINGS: (context) => Settings(),
           AppRoutes.MOVIEGRID: (context) => MovieGrid(),
           AppRoutes.MOVIEDETAIL: (context) => MovieDetail(),
