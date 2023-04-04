@@ -3,7 +3,6 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:movies_review/models/user.dart';
 import 'package:movies_review/pages/homePage.dart';
 import 'package:movies_review/pages/login.dart';
-import 'package:movies_review/pages/signUp.dart';
 import 'package:provider/provider.dart';
 
 class AuthOrHome extends StatelessWidget {

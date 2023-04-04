@@ -10,7 +10,6 @@ import 'package:movies_review/pages/login.dart';
 import 'package:movies_review/pages/movieDetail.dart';
 import 'package:movies_review/pages/reviewForm.dart';
 import 'package:movies_review/pages/settings.dart';
-import 'package:movies_review/pages/signUp.dart';
 import 'package:movies_review/utils/appRoutes.dart';
 import 'package:provider/provider.dart';
 
@@ -45,7 +44,6 @@ class MyApp extends StatelessWidget {
         ),
         routes: {
           AppRoutes.AUTHORHOME: (context) => AuthOrHome(),
-          AppRoutes.SIGNUP: (context) => SignUp(),
           AppRoutes.SETTINGS: (context) => Settings(),
           AppRoutes.MOVIEGRID: (context) => MovieGrid(),
           AppRoutes.MOVIEDETAIL: (context) => MovieDetail(),

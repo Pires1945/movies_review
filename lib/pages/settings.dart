@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:movies_review/models/user.dart';
+import 'package:movies_review/utils/appRoutes.dart';
+import 'package:provider/provider.dart';
 
 class Settings extends StatelessWidget {
   const Settings({super.key});
@@ -104,7 +106,11 @@ class Settings extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Provider.of<User>(context, listen: false).logout();
+                      Navigator.of(context)
+                          .pushReplacementNamed(AppRoutes.AUTHORHOME);
+                    },
                     child: const Text(
                       'Sair',
                       style: TextStyle(
