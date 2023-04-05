@@ -16,6 +16,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<ReviewList>(context, listen: false).loadReviews();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ReviewList>(context);
     final List<Review> reviewList = provider.reviews;

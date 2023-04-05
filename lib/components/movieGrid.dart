@@ -109,16 +109,17 @@ class _MovieGridState extends State<MovieGrid> {
                             ),
                           ),
                           IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  isSearch = true;
-                                });
-                              },
-                              icon: Icon(
-                                Icons.search,
-                                color: Colors.grey,
-                                size: 36,
-                              ))
+                            onPressed: () {
+                              setState(() {
+                                isSearch = true;
+                              });
+                            },
+                            icon: const Icon(
+                              Icons.search,
+                              color: Colors.grey,
+                              size: 36,
+                            ),
+                          )
                         ],
                       ),
               ),

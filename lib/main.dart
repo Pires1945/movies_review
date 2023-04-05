@@ -3,7 +3,7 @@ import 'package:movies_review/components/gridReviews.dart';
 import 'package:movies_review/components/movieGrid.dart';
 import 'package:movies_review/models/movieList.dart';
 import 'package:movies_review/models/reviewList.dart';
-import 'package:movies_review/models/user.dart';
+import 'package:movies_review/models/auth.dart';
 import 'package:movies_review/pages/authOrHome.dart';
 import 'package:movies_review/pages/homePage.dart';
 import 'package:movies_review/pages/login.dart';
@@ -25,8 +25,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => User()),
-        ChangeNotifierProxyProvider<User, ReviewList>(
+        ChangeNotifierProvider(create: (context) => Auth()),
+        ChangeNotifierProxyProvider<Auth, ReviewList>(
           create: (context) => ReviewList(),
           update: (context, value, previous) => ReviewList(
             value.token ?? '',

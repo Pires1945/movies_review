@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 //https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]
-class User with ChangeNotifier {
+class Auth with ChangeNotifier {
   String? _token;
   String? _email;
   String? _userId;

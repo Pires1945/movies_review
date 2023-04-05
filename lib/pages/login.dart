@@ -5,7 +5,7 @@ import 'package:movies_review/components/loginForm.dart';
 import 'package:movies_review/utils/appRoutes.dart';
 import 'package:provider/provider.dart';
 
-import '../models/user.dart';
+import '../models/auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -23,6 +23,9 @@ class _LoginPageState extends State<LoginPage> {
       body: Stack(
         children: [
           Container(
+            color: Color.fromARGB(255, 221, 221, 221),
+          ),
+          Container(
             height: deviceSize.height * 0.6,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
@@ -39,27 +42,13 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 120),
-            child: Container(
-              width: double.infinity,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'Nome do App',
-                      style: TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                  ),
-                  Divider(),
-                  LoginForm(),
-                ],
-              ),
+          Container(
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                LoginForm(),
+              ],
             ),
           ),
         ],

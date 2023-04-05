@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:movies_review/models/user.dart';
+import 'package:movies_review/models/auth.dart';
 import 'package:movies_review/utils/appRoutes.dart';
 import 'package:provider/provider.dart';
 
@@ -107,7 +107,7 @@ class Settings extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: TextButton(
                     onPressed: () {
-                      Provider.of<User>(context, listen: false).logout();
+                      Provider.of<Auth>(context, listen: false).logout();
                       Navigator.of(context)
                           .pushReplacementNamed(AppRoutes.AUTHORHOME);
                     },
