@@ -63,6 +63,7 @@ class _GridReviewsState extends State<GridReviews> {
             Flexible(
               child: ListView.builder(
                 itemCount: loadedReviews.length,
+                padding: const EdgeInsets.only(bottom: 60),
                 itemBuilder: (context, index) => ChangeNotifierProvider.value(
                   value: loadedReviews[index],
                   child: Padding(

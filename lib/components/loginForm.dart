@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:provider/provider.dart';
 import '../models/auth.dart';
-import '../utils/appRoutes.dart';
 
 enum AuthMode {
   sigUp,
@@ -20,7 +17,7 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  Map<String, String> _authData = {
+  final Map<String, String> _authData = {
     'email': '',
     'password': '',
   };
@@ -70,7 +67,7 @@ class _LoginFormState extends State<LoginForm> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
                 'Nome do App',
@@ -80,8 +77,9 @@ class _LoginFormState extends State<LoginForm> {
                     color: Colors.white),
               ),
             ),
-            Divider(),
+            const Divider(),
             Card(
+              color: const Color.fromARGB(255, 221, 220, 220),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
               elevation: 15,
@@ -94,7 +92,7 @@ class _LoginFormState extends State<LoginForm> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      Container(
+                      SizedBox(
                         height: 45,
                         child: TextFormField(
                           decoration: InputDecoration(
@@ -117,7 +115,7 @@ class _LoginFormState extends State<LoginForm> {
                       const SizedBox(
                         height: 15,
                       ),
-                      Container(
+                      SizedBox(
                         height: 45,
                         child: TextFormField(
                           controller: _passwordController,
@@ -144,7 +142,7 @@ class _LoginFormState extends State<LoginForm> {
                         height: 15,
                       ),
                       if (_isSigUp())
-                        Container(
+                        SizedBox(
                           height: 45,
                           child: TextFormField(
                             decoration: InputDecoration(

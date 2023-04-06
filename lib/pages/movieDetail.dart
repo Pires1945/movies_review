@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:movies_review/models/movie.dart';
+import 'package:movies_review/models/reviewList.dart';
 import 'package:movies_review/utils/appRoutes.dart';
 import 'package:provider/provider.dart';
 
@@ -12,6 +13,21 @@ class MovieDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     const baseUrlImage = 'https://image.tmdb.org/t/p/w220_and_h330_face';
     final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
+    final provider = Provider.of<ReviewList>(context, listen: false);
+    final reviews = provider.reviews;
+    var totalStarsMovie = 0;
+
+    final reviewsMovie = reviews
+        .where(
+          (element) => element.movieId == movie.id,
+        )
+        .toList();
+
+    reviewsMovie.forEach(
+      (element) => totalStarsMovie = totalStarsMovie + element.avaliation,
+    );
+
+    var mediaStarMovie = totalStarsMovie / reviewsMovie.length;
 
     return Scaffold(
       appBar: AppBar(
@@ -50,25 +66,9 @@ class MovieDetail extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const Icon(
-                        Icons.star_border,
-                        color: Color.fromARGB(255, 146, 132, 4),
-                      ),
-                      const Icon(
-                        Icons.star_border,
-                        color: Color.fromARGB(255, 146, 132, 4),
-                      ),
-                      const Icon(
-                        Icons.star_border,
-                        color: Color.fromARGB(255, 146, 132, 4),
-                      ),
-                      const Icon(
-                        Icons.star_border,
-                        color: Color.fromARGB(255, 146, 132, 4),
-                      ),
-                      const Icon(
-                        Icons.star_border,
-                        color: Color.fromARGB(255, 146, 132, 4),
+                      Text(
+                        mediaStarMovie.toString(),
+                        style: TextStyle(color: Colors.white),
                       ),
                       IconButton(
                         onPressed: () {
