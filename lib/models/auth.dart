@@ -78,6 +78,7 @@ class Auth with ChangeNotifier {
     _userId = null;
     _expireDate = null;
     _clearLogoutTimer();
+    notifyListeners();
   }
 
   void _autoLogout() {
