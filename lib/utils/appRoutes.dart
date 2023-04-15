@@ -8,4 +8,5 @@ class AppRoutes {
   static const MOVIEDETAIL = '/movie_detail';
   static const REVIEWFORM = '/review_form';
   static const GRIDREVIEWS = '/grid_reviews';
+  static const REGISTERFORM = '/register-page';
 }

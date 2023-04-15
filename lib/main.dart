@@ -8,6 +8,7 @@ import 'package:movies_review/pages/authOrHome.dart';
 import 'package:movies_review/pages/homePage.dart';
 import 'package:movies_review/pages/login.dart';
 import 'package:movies_review/pages/movieDetail.dart';
+import 'package:movies_review/pages/registerPage.dart';
 import 'package:movies_review/pages/reviewForm.dart';
 import 'package:movies_review/pages/settings.dart';
 import 'package:movies_review/utils/appRoutes.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
           AppRoutes.MOVIEDETAIL: (context) => MovieDetail(),
           AppRoutes.REVIEWFORM: (context) => ReviewForm(),
           AppRoutes.GRIDREVIEWS: (context) => GridReviews(),
+          AppRoutes.REGISTERFORM: (context) => RegisterPageForm(),
         },
       ),
     );

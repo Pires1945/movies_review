@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_review/utils/appRoutes.dart';
 import 'package:provider/provider.dart';
 import '../models/auth.dart';
 
@@ -187,9 +188,12 @@ class _LoginFormState extends State<LoginForm> {
                         height: 12,
                       ),
                       TextButton(
-                        onPressed: _switchLoginMode,
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushNamed(AppRoutes.REGISTERFORM);
+                        },
                         child: Text(
-                            _isLogin() ? 'Registrar-se' : 'Já tenho uma conta'),
+                            _isLogin() ? 'Criar conta' : 'Já tenho uma conta'),
                       ),
                     ],
                   ),
