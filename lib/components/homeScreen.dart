@@ -36,13 +36,17 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         Container(
           height: MediaQuery.of(context).size.height,
-          child: Image.asset(
-            'images/samurais.png',
-            fit: BoxFit.cover,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(255, 9, 85, 99),
+                Color.fromARGB(255, 32, 32, 32),
+                Colors.black,
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
           ),
-        ),
-        Container(
-          color: Color.fromARGB(112, 54, 54, 54),
         ),
         Column(
           children: [
@@ -85,22 +89,12 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Container(
                   width: double.infinity,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.black54,
-                        Color.fromARGB(78, 158, 158, 158),
-                      ],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                    ),
-                  ),
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
                       'Cíticas dos usuários',
                       style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 24,
                           fontWeight: FontWeight.w500,
                           color: Colors.white),
                     ),
@@ -120,6 +114,19 @@ class _HomeScreenState extends State<HomeScreen> {
                         return e;
                       });
                     }).toList(),
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Filmes com melhor avalição',
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white),
+                    ),
                   ),
                 ),
               ],

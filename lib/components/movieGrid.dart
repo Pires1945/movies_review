@@ -46,9 +46,16 @@ class _MovieGridState extends State<MovieGrid> {
       children: [
         Container(
           height: MediaQuery.of(context).size.height,
-          child: Image.asset(
-            'images/samurais.png',
-            fit: BoxFit.cover,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(255, 9, 85, 99),
+                Color.fromARGB(255, 32, 32, 32),
+                Colors.black,
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
           ),
         ),
         Container(
