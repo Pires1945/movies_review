@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:movies_review/components/widgetStars.dart';
 import 'package:movies_review/models/movie.dart';
 import 'package:movies_review/models/reviewList.dart';
 import 'package:movies_review/utils/appRoutes.dart';
@@ -64,12 +65,9 @@ class MovieDetail extends StatelessWidget {
                     ],
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text(
-                        mediaStarMovie.toString(),
-                        style: TextStyle(color: Colors.white),
-                      ),
+                      Stars(mediaStarMovie),
                       IconButton(
                         onPressed: () {
                           Navigator.of(context).pushNamed(AppRoutes.REVIEWFORM,
