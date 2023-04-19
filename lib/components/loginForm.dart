@@ -96,11 +96,23 @@ class _LoginFormState extends State<LoginForm> {
                       SizedBox(
                         height: 45,
                         child: TextFormField(
-                          decoration: InputDecoration(
-                              labelText: 'Email',
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(25),
-                              )),
+                          cursorColor: Colors.grey,
+                          decoration: const InputDecoration(
+                            labelText: 'Email',
+                            labelStyle: TextStyle(
+                                color: Color.fromARGB(255, 110, 110, 110)),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(25)),
+                                borderSide: BorderSide(
+                                    color: Color.fromARGB(255, 110, 110, 110))),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(25)),
+                              borderSide: BorderSide(
+                                  color: Color.fromARGB(255, 110, 110, 110)),
+                            ),
+                          ),
                           keyboardType: TextInputType.emailAddress,
                           onSaved: (newValue) =>
                               _authData['email'] = newValue ?? '',
@@ -120,11 +132,23 @@ class _LoginFormState extends State<LoginForm> {
                         height: 45,
                         child: TextFormField(
                           controller: _passwordController,
-                          decoration: InputDecoration(
-                              labelText: 'Senha',
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(25),
-                              )),
+                          cursorColor: Colors.grey,
+                          decoration: const InputDecoration(
+                            labelText: 'Senha',
+                            labelStyle: TextStyle(
+                                color: Color.fromARGB(255, 110, 110, 110)),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(25)),
+                                borderSide: BorderSide(
+                                    color: Color.fromARGB(255, 110, 110, 110))),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(25)),
+                              borderSide: BorderSide(
+                                  color: Color.fromARGB(255, 110, 110, 110)),
+                            ),
+                          ),
                           obscureText: true,
                           keyboardType: TextInputType.text,
                           onSaved: (newValue) =>
