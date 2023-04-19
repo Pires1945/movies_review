@@ -56,26 +56,28 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                       child: Column(
                         children: [
                           Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color:
-                                      const Color.fromARGB(144, 255, 255, 255)),
-                              borderRadius: BorderRadius.circular(25),
-                            ),
                             height: 45,
                             child: TextFormField(
                               style: const TextStyle(color: Colors.white),
                               decoration: const InputDecoration(
-                                  labelText: 'Nome',
-                                  labelStyle: TextStyle(
-                                      color: Color.fromARGB(111, 255, 255, 255),
-                                      fontSize: 14),
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                  )),
+                                labelText: 'Nome',
+                                labelStyle: TextStyle(
+                                    color: Color.fromARGB(111, 255, 255, 255),
+                                    fontSize: 14),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(25)),
+                                    borderSide: BorderSide(
+                                        color:
+                                            Color.fromARGB(80, 255, 255, 255))),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(25)),
+                                  borderSide: BorderSide(
+                                      color:
+                                          Color.fromARGB(144, 255, 255, 255)),
+                                ),
+                              ),
                               keyboardType: TextInputType.name,
                               cursorColor:
                                   const Color.fromARGB(255, 221, 221, 221),
@@ -91,12 +93,6 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                           ),
                           const SizedBox(height: 20),
                           Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color:
-                                      const Color.fromARGB(144, 255, 255, 255)),
-                              borderRadius: BorderRadius.circular(25),
-                            ),
                             height: 45,
                             child: TextFormField(
                               style: const TextStyle(color: Colors.white),
@@ -105,12 +101,18 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                                   labelStyle: TextStyle(
                                       color: Color.fromARGB(111, 255, 255, 255),
                                       fontSize: 14),
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(25)),
+                                      borderSide: BorderSide(
+                                          color: Color.fromARGB(
+                                              80, 255, 255, 255))),
                                   focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                  )),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(25)),
+                                      borderSide: BorderSide(
+                                          color: Color.fromARGB(
+                                              144, 255, 255, 255)))),
                               keyboardType: TextInputType.name,
                               cursorColor:
                                   const Color.fromARGB(255, 221, 221, 221),
@@ -123,12 +125,6 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                           ),
                           const SizedBox(height: 20),
                           Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color:
-                                      const Color.fromARGB(144, 255, 255, 255)),
-                              borderRadius: BorderRadius.circular(25),
-                            ),
                             height: 45,
                             child: TextFormField(
                               style: const TextStyle(color: Colors.white),
@@ -137,12 +133,18 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                                   labelStyle: TextStyle(
                                       color: Color.fromARGB(111, 255, 255, 255),
                                       fontSize: 14),
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(25)),
+                                      borderSide: BorderSide(
+                                          color: Color.fromARGB(
+                                              80, 255, 255, 255))),
                                   focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                  )),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(25)),
+                                      borderSide: BorderSide(
+                                          color: Color.fromARGB(
+                                              144, 255, 255, 255)))),
                               keyboardType: TextInputType.text,
                               cursorColor:
                                   const Color.fromARGB(255, 221, 221, 221),
@@ -159,12 +161,6 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                           ),
                           const SizedBox(height: 20),
                           Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color:
-                                      const Color.fromARGB(144, 255, 255, 255)),
-                              borderRadius: BorderRadius.circular(25),
-                            ),
                             height: 45,
                             child: TextFormField(
                               controller: _passwordController,
@@ -174,12 +170,18 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                                   labelStyle: TextStyle(
                                       color: Color.fromARGB(111, 255, 255, 255),
                                       fontSize: 14),
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(25)),
+                                      borderSide: BorderSide(
+                                          color: Color.fromARGB(
+                                              80, 255, 255, 255))),
                                   focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                  )),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(25)),
+                                      borderSide: BorderSide(
+                                          color: Color.fromARGB(
+                                              144, 255, 255, 255)))),
                               keyboardType: TextInputType.name,
                               cursorColor:
                                   const Color.fromARGB(255, 221, 221, 221),
@@ -195,12 +197,6 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                           ),
                           const SizedBox(height: 20),
                           Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color:
-                                      const Color.fromARGB(144, 255, 255, 255)),
-                              borderRadius: BorderRadius.circular(25),
-                            ),
                             height: 45,
                             child: TextFormField(
                               style: const TextStyle(color: Colors.white),
@@ -209,12 +205,18 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                                   labelStyle: TextStyle(
                                       color: Color.fromARGB(111, 255, 255, 255),
                                       fontSize: 14),
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(25)),
+                                      borderSide: BorderSide(
+                                          color: Color.fromARGB(
+                                              80, 255, 255, 255))),
                                   focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                  )),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(25)),
+                                      borderSide: BorderSide(
+                                          color: Color.fromARGB(
+                                              144, 255, 255, 255)))),
                               keyboardType: TextInputType.name,
                               cursorColor:
                                   const Color.fromARGB(255, 221, 221, 221),
@@ -239,7 +241,7 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                       height: MediaQuery.of(context).size.height * 0.05,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
-                        color: Color.fromARGB(255, 9, 85, 99),
+                        color: const Color.fromARGB(255, 9, 85, 99),
                       ),
                       child: TextButton(
                         onPressed: () {},
