@@ -29,6 +29,16 @@ class Auth with ChangeNotifier {
     return isAuth ? _userId : null;
   }
 
+  Future<void> _register(
+      String email, String password, String urlFragment) async {
+    final url =
+        'https://identitytoolkit.googleapis.com/v1/accounts:$urlFragment?key=AIzaSyAVFaHotvYTV-PfN0avpysFEt0eeLsoDYU';
+
+    final response = await http.post(Uri.parse(url),
+        body: jsonEncode(
+            {'email': email, 'password': password, 'returnSecureToken': true}));
+  }
+
   Future<void> _authenticate(
       String email, String password, String urlFragment) async {
     final url =
@@ -36,11 +46,8 @@ class Auth with ChangeNotifier {
 
     final response = await http.post(
       Uri.parse(url),
-      body: jsonEncode({
-        'email': email,
-        'password': password,
-        'returnSecureToken': true,
-      }),
+      body: jsonEncode(
+          {'email': email, 'password': password, 'returnSecureToken': true}),
     );
 
     final body = jsonDecode(response.body);
@@ -60,7 +67,7 @@ class Auth with ChangeNotifier {
   }
 
   Future<void> signUp(String email, String password) async {
-    return _authenticate(email, password, 'signUp');
+    return _register(email, password, 'signUp');
   }
 
   Future<void> login(String email, String password) async {

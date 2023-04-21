@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
             color: Color.fromARGB(255, 221, 221, 221),
           ),
           Container(
-            height: deviceSize.height * 0.6,
+            height: deviceSize.height * 0.5,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(18),

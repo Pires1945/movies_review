@@ -48,14 +48,10 @@ class _LoginFormState extends State<LoginForm> {
     Auth auth = Provider.of(context, listen: false);
 
     try {
-      if (_isLogin()) {
-        await auth.login(
-          _authData['email']!,
-          _authData['password']!,
-        );
-      } else {
-        await auth.signUp(_authData['email']!, _authData['password']!);
-      }
+      await auth.login(
+        _authData['email']!,
+        _authData['password']!,
+      );
     } catch (error) {
       print(error.toString());
     }

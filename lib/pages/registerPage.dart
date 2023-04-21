@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:movies_review/models/auth.dart';
+import 'package:provider/provider.dart';
 
 class RegisterPageForm extends StatefulWidget {
   const RegisterPageForm({super.key});
@@ -18,6 +20,27 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
     'email': '',
     'password': '',
   };
+
+  Future<void> _submit() async {
+    final isValid = _formKey.currentState?.validate() ?? false;
+
+    if (!isValid) return;
+
+    _formKey.currentState?.save();
+
+    Auth auth = Provider.of(context, listen: false);
+
+    try {
+      await auth.signUp(
+        _registerData['email']!,
+        _registerData['password']!,
+      );
+    } catch (error) {
+      print(error.toString());
+    }
+
+    Navigator.of(context).pop();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -244,7 +267,7 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                         color: const Color.fromARGB(255, 9, 85, 99),
                       ),
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: _submit,
                         child: const Text(
                           'Registrar',
                           style: TextStyle(color: Colors.white, fontSize: 16),
@@ -260,7 +283,9 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                           border: Border.all(
                               color: const Color.fromARGB(144, 255, 255, 255))),
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
                         child: const Text(
                           'Cancelar',
                           style: TextStyle(color: Colors.white, fontSize: 14),

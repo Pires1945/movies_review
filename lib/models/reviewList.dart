@@ -66,7 +66,7 @@ class ReviewList extends ChangeNotifier {
 
     Map<String, dynamic> data = jsonDecode(response.body);
 
-    print(response.body);
+    //print(response.body);
 
     data.forEach((key, value) {
       _reviews.add(
