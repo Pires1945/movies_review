@@ -7,14 +7,26 @@ import 'package:movies_review/models/reviewList.dart';
 import 'package:movies_review/utils/appRoutes.dart';
 import 'package:provider/provider.dart';
 
-class MovieDetail extends StatelessWidget {
+class MovieDetail extends StatefulWidget {
   const MovieDetail({super.key});
+
+  @override
+  State<MovieDetail> createState() => _MovieDetailState();
+}
+
+class _MovieDetailState extends State<MovieDetail> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<ReviewList>(context, listen: false).loadReviews();
+  }
 
   @override
   Widget build(BuildContext context) {
     const baseUrlImage = 'https://image.tmdb.org/t/p/w220_and_h330_face';
     final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
-    final provider = Provider.of<ReviewList>(context, listen: false);
+    final provider = Provider.of<ReviewList>(context);
     final reviews = provider.reviews;
     var totalStarsMovie = 0;
 
@@ -70,7 +82,8 @@ class MovieDetail extends StatelessWidget {
                       Stars(mediaStarMovie),
                       IconButton(
                         onPressed: () {
-                          Navigator.of(context).pushNamed(AppRoutes.REVIEWFORM,
+                          Navigator.of(context).pushReplacementNamed(
+                              AppRoutes.REVIEWFORM,
                               arguments: movie);
                         },
                         icon: const Icon(

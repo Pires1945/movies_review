@@ -23,7 +23,8 @@ class _GridReviewsState extends State<GridReviews> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ReviewList>(context);
-    final List<Review> loadedReviews = provider.reviews;
+    final List<Review> loadedReviews = provider.reviews.reversed.toList();
+
     return Stack(
       children: [
         Container(

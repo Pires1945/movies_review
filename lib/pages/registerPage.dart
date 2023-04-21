@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:movies_review/models/auth.dart';
+import 'package:movies_review/models/user.dart';
 import 'package:provider/provider.dart';
 
 class RegisterPageForm extends StatefulWidget {
@@ -14,9 +15,10 @@ class RegisterPageForm extends StatefulWidget {
 class _RegisterPageFormState extends State<RegisterPageForm> {
   final _formKey = GlobalKey<FormState>();
   final _passwordController = TextEditingController();
+
   final Map<String, String> _registerData = {
     'name': '',
-    'nickName': '',
+    'nickname': '',
     'email': '',
     'password': '',
   };
@@ -38,6 +40,11 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
     } catch (error) {
       print(error.toString());
     }
+
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text('Cadastro feito com sucesso!'),
+      duration: Duration(seconds: 2),
+    ));
 
     Navigator.of(context).pop();
   }
@@ -140,7 +147,7 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                               cursorColor:
                                   const Color.fromARGB(255, 221, 221, 221),
                               onSaved: (newValue) =>
-                                  _registerData['nickName'] = newValue ?? '',
+                                  _registerData['nickname'] = newValue ?? '',
                               validator: (value) {
                                 final name = value ?? '';
                               },

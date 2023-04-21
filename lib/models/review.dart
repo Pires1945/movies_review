@@ -3,6 +3,7 @@ import 'package:movies_review/models/movie.dart';
 
 class Review extends ChangeNotifier {
   String id;
+  String userId;
   String movieTitle;
   int movieId;
   String review;
@@ -11,6 +12,7 @@ class Review extends ChangeNotifier {
 
   Review({
     required this.id,
+    required this.userId,
     required this.movieTitle,
     required this.movieId,
     required this.review,

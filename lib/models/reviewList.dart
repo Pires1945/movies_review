@@ -24,6 +24,7 @@ class ReviewList extends ChangeNotifier {
 
     final review = Review(
       id: hasId ? data['id'] as String : Random().nextDouble().toString(),
+      userId: _userId,
       movieTitle: data['movieTitle'] as String,
       movieId: data['movieId'] as int,
       review: data['review'] as String,
@@ -38,6 +39,7 @@ class ReviewList extends ChangeNotifier {
     final response = await http.post(
       Uri.parse('${Constants.reviewUrl}.json?auth=$_token'),
       body: jsonEncode({
+        "userId": review.userId,
         "movieTitle": review.movieTitle,
         "movieId": review.movieId,
         "review": review.review,
@@ -72,6 +74,7 @@ class ReviewList extends ChangeNotifier {
       _reviews.add(
         Review(
           id: key,
+          userId: _userId,
           movieTitle: value['movieTitle'],
           movieId: value['movieId'],
           review: value['review'],
