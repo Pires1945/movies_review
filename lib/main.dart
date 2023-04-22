@@ -4,6 +4,7 @@ import 'package:movies_review/components/movieGrid.dart';
 import 'package:movies_review/models/movieList.dart';
 import 'package:movies_review/models/reviewList.dart';
 import 'package:movies_review/models/auth.dart';
+import 'package:movies_review/models/userList.dart';
 import 'package:movies_review/pages/authOrHome.dart';
 import 'package:movies_review/pages/homePage.dart';
 import 'package:movies_review/pages/login.dart';

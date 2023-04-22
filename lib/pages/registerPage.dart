@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:movies_review/models/auth.dart';
 import 'package:movies_review/models/user.dart';
+import 'package:movies_review/models/userList.dart';
 import 'package:provider/provider.dart';
 
 class RegisterPageForm extends StatefulWidget {

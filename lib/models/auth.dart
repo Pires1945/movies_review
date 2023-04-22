@@ -3,6 +3,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:movies_review/models/user.dart';
+import 'package:movies_review/models/userList.dart';
+
+import '../utils/constants.dart';
 
 //https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]
 class Auth with ChangeNotifier {
@@ -61,9 +65,20 @@ class Auth with ChangeNotifier {
       ));
     }
 
-    // print(_token);
-    // print(isAuth);
     notifyListeners();
+  }
+
+  Future<void> addUser(User user) async {
+    final response = await http.post(
+      Uri.parse('${Constants.userUrl}/$_userId.json?auth=$_token'),
+      body: jsonEncode({
+        "userId": user.userId,
+        "name": user.name,
+        "nickname": user.nickname,
+        "email": user.email,
+        "password": user.password,
+      }),
+    );
   }
 
   Future<void> signUp(String email, String password) async {
