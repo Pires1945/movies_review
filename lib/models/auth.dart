@@ -33,14 +33,44 @@ class Auth with ChangeNotifier {
     return isAuth ? _userId : null;
   }
 
-  Future<void> _register(
-      String email, String password, String urlFragment) async {
+  Future<void> _register(String email, String password, String urlFragment,
+      Map<String, Object> data) async {
     final url =
         'https://identitytoolkit.googleapis.com/v1/accounts:$urlFragment?key=AIzaSyAVFaHotvYTV-PfN0avpysFEt0eeLsoDYU';
 
     final response = await http.post(Uri.parse(url),
         body: jsonEncode(
             {'email': email, 'password': password, 'returnSecureToken': true}));
+
+    final body = jsonDecode(response.body);
+
+    data['userId'] = body['localId'];
+    final token = body['idToken'];
+
+    final user = User(
+        userId: body['localId'],
+        name: data['name'] as String,
+        nickname: data['nickname'] as String,
+        email: data['email'] as String,
+        password: data['password'] as String);
+
+    addUser(user, token);
+  }
+
+  Future<void> addUser(User user, String token) async {
+    final response = await http.post(
+      Uri.parse('${Constants.userUrl}/${user.userId}.json?auth=$token'),
+      body: jsonEncode({
+        "userId": user.userId,
+        "name": user.name,
+        "nickname": user.nickname,
+        "email": user.email,
+        "password": user.password,
+      }),
+    );
+
+    print(user.userId);
+    print(token);
   }
 
   Future<void> _authenticate(
@@ -68,21 +98,9 @@ class Auth with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addUser(User user) async {
-    final response = await http.post(
-      Uri.parse('${Constants.userUrl}/$_userId.json?auth=$_token'),
-      body: jsonEncode({
-        "userId": user.userId,
-        "name": user.name,
-        "nickname": user.nickname,
-        "email": user.email,
-        "password": user.password,
-      }),
-    );
-  }
-
-  Future<void> signUp(String email, String password) async {
-    return _register(email, password, 'signUp');
+  Future<void> signUp(
+      String email, String password, Map<String, Object> data) async {
+    return _register(email, password, 'signUp', data);
   }
 
   Future<void> login(String email, String password) async {

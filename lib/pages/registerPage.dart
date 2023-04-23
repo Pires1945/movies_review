@@ -37,6 +37,7 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
       await auth.signUp(
         _registerData['email']!,
         _registerData['password']!,
+        _registerData,
       );
     } catch (error) {
       print(error.toString());
