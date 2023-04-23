@@ -10,4 +10,5 @@ class AppRoutes {
   static const REVIEWFORM = '/review_form';
   static const GRIDREVIEWS = '/grid_reviews';
   static const REGISTERFORM = '/register-page';
+  static const USER = '/user-page';
 }

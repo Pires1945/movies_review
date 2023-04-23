@@ -5,11 +5,24 @@ import 'package:movies_review/models/auth.dart';
 import 'package:movies_review/utils/appRoutes.dart';
 import 'package:provider/provider.dart';
 
-class Settings extends StatelessWidget {
+class Settings extends StatefulWidget {
   const Settings({super.key});
 
   @override
+  State<Settings> createState() => _SettingsState();
+}
+
+class _SettingsState extends State<Settings> {
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<Auth>(context, listen: false).loadUser();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<Auth>(context);
+    final user = provider.user;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -41,9 +54,9 @@ class Settings extends StatelessWidget {
                     size: 36,
                   ),
                 ),
-                title: const Text(
-                  'Nome do Usuário',
-                  style: TextStyle(
+                title: Text(
+                  user!.nickname,
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 22,
                       fontWeight: FontWeight.w700),
@@ -56,6 +69,10 @@ class Settings extends StatelessWidget {
                   Icons.navigate_next_rounded,
                   color: Colors.grey,
                 ),
+                onTap: () {
+                  Navigator.of(context)
+                      .pushReplacementNamed(AppRoutes.USER, arguments: user);
+                },
               ),
               Container(
                 child: Padding(

@@ -15,6 +15,8 @@ class Auth with ChangeNotifier {
   String? _userId;
   DateTime? _expireDate;
   Timer? _logoutTimer;
+  List<User> _users = [];
+  User? user;
 
   bool get isAuth {
     final isValid = _expireDate?.isAfter(DateTime.now()) ?? false;
@@ -44,7 +46,7 @@ class Auth with ChangeNotifier {
 
     final body = jsonDecode(response.body);
 
-    data['userId'] = body['localId'];
+    final userId = data['userId'] = body['localId'];
     final token = body['idToken'];
 
     final user = User(
@@ -68,9 +70,38 @@ class Auth with ChangeNotifier {
         "password": user.password,
       }),
     );
+  }
 
-    print(user.userId);
-    print(token);
+  Future<void> loadUser() async {
+    _users.clear();
+    final response = await http
+        .get(Uri.parse('${Constants.userUrl}/$_userId.json?auth=$_token'));
+    if (response.body == 'null') return;
+
+    Map<String, dynamic> data = jsonDecode(response.body);
+
+    // data.forEach((key, value) {
+    //   _users.add(
+    //     User(
+    //         userId: key,
+    //         name: value['name'],
+    //         nickname: value['nickname'],
+    //         email: value['email'],
+    //         password: value['password']),
+    //   );
+    // });
+    data.forEach(
+      (key, value) {
+        user = User(
+            userId: key,
+            name: value['name'],
+            nickname: value['nickname'],
+            email: value['email'],
+            password: value['password']);
+      },
+    );
+
+    notifyListeners();
   }
 
   Future<void> _authenticate(
