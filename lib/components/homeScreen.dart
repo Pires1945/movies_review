@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_review/components/bannerReviewCarousel.dart';
+import 'package:movies_review/models/auth.dart';
 import 'package:movies_review/models/reviewList.dart';
 import 'package:movies_review/utils/appRoutes.dart';
 import 'package:provider/provider.dart';

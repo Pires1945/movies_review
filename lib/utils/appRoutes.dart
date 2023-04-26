@@ -11,4 +11,5 @@ class AppRoutes {
   static const GRIDREVIEWS = '/grid_reviews';
   static const REGISTERFORM = '/register-page';
   static const USER = '/user-page';
+  static const MYREVIEWS = '/my-reviews';
 }
