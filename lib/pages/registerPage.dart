@@ -195,6 +195,7 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                           Container(
                             height: 45,
                             child: TextFormField(
+                              obscureText: true,
                               controller: _passwordController,
                               style: const TextStyle(color: Colors.white),
                               decoration: const InputDecoration(
@@ -231,6 +232,7 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                           Container(
                             height: 45,
                             child: TextFormField(
+                              obscureText: true,
                               style: const TextStyle(color: Colors.white),
                               decoration: const InputDecoration(
                                   labelText: 'Confirme sua senha',

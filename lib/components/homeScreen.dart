@@ -122,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
-                      'Filmes com melhor avalição',
+                      'Filmes com melhor avaliação',
                       style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w500,

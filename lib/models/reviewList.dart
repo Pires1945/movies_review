@@ -12,6 +12,8 @@ class ReviewList extends ChangeNotifier {
   final String _userId;
   List<Review> _reviews = [];
   List<Review> get reviews => [..._reviews];
+  List<Review> _myReviews = [];
+  List<Review> get myReviews => [..._myReviews];
 
   ReviewList([
     this._token = '',
@@ -74,6 +76,32 @@ class ReviewList extends ChangeNotifier {
 
     data.forEach((key, value) {
       _reviews.add(
+        Review(
+          id: key,
+          userId: _userId,
+          movieTitle: value['movieTitle'],
+          movieId: value['movieId'],
+          review: value['review'],
+          avaliation: value['avaliation'],
+          date: DateTime.parse(value['date']),
+        ),
+      );
+    });
+    notifyListeners();
+  }
+
+  Future<void> loadMyReviews() async {
+    _myReviews.clear();
+    final response =
+        await http.get(Uri.parse('${Constants.reviewUrl}/.json?auth=$_token'));
+    if (response.body == 'null') return;
+
+    Map<String, dynamic> data = jsonDecode(response.body);
+
+    //print(response.body);
+
+    data.forEach((key, value) {
+      _myReviews.add(
         Review(
           id: key,
           userId: _userId,
