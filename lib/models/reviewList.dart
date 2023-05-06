@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:movies_review/models/movie.dart';
 import 'package:movies_review/models/review.dart';
 
 import '../utils/constants.dart';
@@ -10,6 +9,7 @@ import '../utils/constants.dart';
 class ReviewList extends ChangeNotifier {
   final String _token;
   final String _userId;
+  String get userId => _userId;
   List<Review> _reviews = [];
   List<Review> get reviews => [..._reviews];
   List<Review> _myReviews = [];
@@ -104,7 +104,7 @@ class ReviewList extends ChangeNotifier {
       _myReviews.add(
         Review(
           id: key,
-          userId: _userId,
+          userId: value['userId'],
           movieTitle: value['movieTitle'],
           movieId: value['movieId'],
           review: value['review'],
