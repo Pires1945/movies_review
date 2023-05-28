@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:movies_review/components/reviewItem.dart';
-import 'package:movies_review/models/review.dart';
-import 'package:movies_review/models/reviewList.dart';
-import 'package:provider/provider.dart';
 
 class GridReviews extends StatefulWidget {
   const GridReviews({super.key});
@@ -17,14 +12,10 @@ class _GridReviewsState extends State<GridReviews> {
   @override
   void initState() {
     super.initState();
-    Provider.of<ReviewList>(context, listen: false).loadReviews();
   }
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ReviewList>(context);
-    final List<Review> loadedReviews = provider.reviews.reversed.toList();
-
     return Stack(
       children: [
         Container(
@@ -68,19 +59,19 @@ class _GridReviewsState extends State<GridReviews> {
                 ),
               ),
             ),
-            Flexible(
-              child: ListView.builder(
-                itemCount: loadedReviews.length,
-                padding: const EdgeInsets.only(bottom: 60),
-                itemBuilder: (context, index) => ChangeNotifierProvider.value(
-                  value: loadedReviews[index],
-                  child: Padding(
-                    padding: const EdgeInsets.all(3.0),
-                    child: ReviewItem(loadedReviews[index]),
-                  ),
-                ),
-              ),
-            )
+            // Flexible(
+            //   child: ListView.builder(
+            //     itemCount: loadedReviews.length,
+            //     padding: const EdgeInsets.only(bottom: 60),
+            //     itemBuilder: (context, index) => ChangeNotifierProvider.value(
+            //       value: loadedReviews[index],
+            //       child: Padding(
+            //         padding: const EdgeInsets.all(3.0),
+            //         child: ReviewItem(loadedReviews[index]),
+            //       ),
+            //     ),
+            //   ),
+            // )
           ],
         ),
       ],

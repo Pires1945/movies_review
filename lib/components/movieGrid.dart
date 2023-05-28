@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:movies_review/components/movieItem.dart';
-import 'package:movies_review/components/search.dart';
-import 'package:movies_review/models/movieList.dart';
 import 'package:provider/provider.dart';
 
-import '../models/movie.dart';
+import '../core/models/movie.dart';
+import '../core/models/movieList.dart';
 
 class MovieGrid extends StatefulWidget {
   const MovieGrid({super.key});
@@ -96,9 +94,9 @@ class _MovieGridState extends State<MovieGrid> {
                               filled: true,
                               fillColor: const Color.fromARGB(255, 71, 71, 71),
                             ),
-                            validator: (value) {
-                              final name = value ?? '';
-                            },
+                            // validator: (value) {
+                            //   final name = value ?? '';
+                            // },
                           ),
                         ),
                       )

@@ -1,10 +1,9 @@
 import 'dart:convert';
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:movies_review/models/movie.dart';
 import 'package:http/http.dart' as http;
-import 'package:movies_review/models/review.dart';
 import 'package:movies_review/utils/constants.dart';
+
+import 'movie.dart';
 
 class MovieList extends ChangeNotifier {
   int page = 1;

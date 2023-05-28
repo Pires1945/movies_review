@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:movies_review/components/gridReviews.dart';
 import 'package:movies_review/components/homeScreen.dart';
 
@@ -19,7 +18,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    _widgetOptions = [
+    _widgetOptions = const [
       HomeScreen(),
       MovieGrid(),
       GridReviews(),

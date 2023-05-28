@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_review/components/gridReviews.dart';
 import 'package:movies_review/components/movieGrid.dart';
-import 'package:movies_review/models/movieList.dart';
-import 'package:movies_review/models/reviewList.dart';
-import 'package:movies_review/models/auth.dart';
-import 'package:movies_review/models/userList.dart';
 import 'package:movies_review/pages/authOrHome.dart';
-import 'package:movies_review/pages/homePage.dart';
-import 'package:movies_review/pages/login.dart';
 import 'package:movies_review/pages/movieDetail.dart';
 import 'package:movies_review/pages/myReviews.dart';
 import 'package:movies_review/pages/registerPage.dart';
@@ -16,6 +10,8 @@ import 'package:movies_review/pages/settings.dart';
 import 'package:movies_review/pages/userPage.dart';
 import 'package:movies_review/utils/appRoutes.dart';
 import 'package:provider/provider.dart';
+
+import 'core/models/movieList.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,15 +25,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => Auth()),
-        ChangeNotifierProxyProvider<Auth, ReviewList>(
-          create: (context) => ReviewList(),
-          update: (context, value, previous) => ReviewList(
-            value.token ?? '',
-            value.userId ?? '',
-            previous?.reviews ?? [],
-          ),
-        ),
         ChangeNotifierProvider(create: (context) => MovieList()),
       ],
       child: MaterialApp(

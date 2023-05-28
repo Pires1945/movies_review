@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movies_review/utils/appRoutes.dart';
-import 'package:provider/provider.dart';
-import '../models/auth.dart';
+
+import '../core/models/authForm.dart';
+import '../core/service/auth/auth_service.dart';
 
 enum AuthMode {
   sigUp,
@@ -24,6 +25,7 @@ class _LoginFormState extends State<LoginForm> {
   };
 
   AuthMode _authMode = AuthMode.Login;
+  final _formData = AuthFormData();
 
   bool _isLogin() => _authMode == AuthMode.Login;
   bool _isSigUp() => _authMode == AuthMode.sigUp;
@@ -45,12 +47,10 @@ class _LoginFormState extends State<LoginForm> {
 
     _formKey.currentState?.save();
 
-    Auth auth = Provider.of(context, listen: false);
-
     try {
-      await auth.login(
-        _authData['email']!,
-        _authData['password']!,
+      await AuthService().login(
+        _formData.email,
+        _formData.password,
       );
     } catch (error) {
       print(error.toString());
@@ -110,14 +110,14 @@ class _LoginFormState extends State<LoginForm> {
                             ),
                           ),
                           keyboardType: TextInputType.emailAddress,
-                          onSaved: (newValue) =>
-                              _authData['email'] = newValue ?? '',
+                          onChanged: (value) => _formData.email = value,
                           validator: (value) {
                             final email = value ?? '';
 
                             if (email.trim().isEmpty || !email.contains('@')) {
                               return 'Informe um email válido';
                             }
+                            return null;
                           },
                         ),
                       ),
@@ -147,8 +147,7 @@ class _LoginFormState extends State<LoginForm> {
                           ),
                           obscureText: true,
                           keyboardType: TextInputType.text,
-                          onSaved: (newValue) =>
-                              _authData['password'] = newValue ?? '',
+                          onChanged: (value) => _formData.password = value,
                           validator: (value) {
                             final password = value ?? '';
                             if (password.isEmpty || password.length < 5) {

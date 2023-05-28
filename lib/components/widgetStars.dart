@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:movies_review/components/iconsStar.dart';
 
+// ignore: must_be_immutable
 class Stars extends StatelessWidget {
   double mediaStars;
   Stars(this.mediaStars, {super.key});
@@ -14,38 +14,38 @@ class Stars extends StatelessWidget {
     } else if (mediaStars >= 1 && mediaStars < 1.5) {
       return const IconStar();
     } else if (mediaStars >= 1.5 && mediaStars < 2) {
-      return Row(
-        children: const [
+      return const Row(
+        children: [
           IconStar(),
           HalfStar(),
         ],
       );
     } else if (mediaStars >= 2 && mediaStars < 2.5) {
-      return Row(
-        children: const [
+      return const Row(
+        children: [
           IconStar(),
           IconStar(),
         ],
       );
     } else if (mediaStars >= 2.5 && mediaStars < 3) {
-      return Row(
-        children: const [
+      return const Row(
+        children: [
           IconStar(),
           IconStar(),
           HalfStar(),
         ],
       );
     } else if (mediaStars >= 3 && mediaStars < 3.5) {
-      return Row(
-        children: const [
+      return const Row(
+        children: [
           IconStar(),
           IconStar(),
           IconStar(),
         ],
       );
     } else if (mediaStars >= 3.5 && mediaStars < 4) {
-      return Row(
-        children: const [
+      return const Row(
+        children: [
           IconStar(),
           IconStar(),
           IconStar(),
@@ -53,8 +53,8 @@ class Stars extends StatelessWidget {
         ],
       );
     } else if (mediaStars >= 4 && mediaStars < 4.5) {
-      return Row(
-        children: const [
+      return const Row(
+        children: [
           IconStar(),
           IconStar(),
           IconStar(),
@@ -62,8 +62,8 @@ class Stars extends StatelessWidget {
         ],
       );
     } else if (mediaStars >= 4.5 && mediaStars < 5) {
-      return Row(
-        children: const [
+      return const Row(
+        children: [
           IconStar(),
           IconStar(),
           IconStar(),
@@ -72,8 +72,8 @@ class Stars extends StatelessWidget {
         ],
       );
     } else if (mediaStars >= 5) {
-      return Row(
-        children: const [
+      return const Row(
+        children: [
           IconStar(),
           IconStar(),
           IconStar(),

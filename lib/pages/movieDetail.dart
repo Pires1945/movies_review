@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:movies_review/components/widgetStars.dart';
-import 'package:movies_review/models/movie.dart';
-import 'package:movies_review/models/reviewList.dart';
 import 'package:movies_review/utils/appRoutes.dart';
-import 'package:provider/provider.dart';
+
+import '../core/models/movie.dart';
 
 class MovieDetail extends StatefulWidget {
   const MovieDetail({super.key});
@@ -19,28 +16,25 @@ class _MovieDetailState extends State<MovieDetail> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Provider.of<ReviewList>(context, listen: false).loadReviews();
   }
 
   @override
   Widget build(BuildContext context) {
     const baseUrlImage = 'https://image.tmdb.org/t/p/w220_and_h330_face';
     final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
-    final provider = Provider.of<ReviewList>(context);
-    final reviews = provider.reviews;
-    var totalStarsMovie = 0;
+    //var totalStarsMovie = 0;
 
-    final reviewsMovie = reviews
-        .where(
-          (element) => element.movieId == movie.id,
-        )
-        .toList();
+    // final reviewsMovie = reviews
+    //     .where(
+    //       (element) => element.movieId == movie.id,
+    //     )
+    //     .toList();
 
-    reviewsMovie.forEach(
-      (element) => totalStarsMovie = totalStarsMovie + element.avaliation,
-    );
+    // reviewsMovie.forEach(
+    //   (element) => totalStarsMovie = totalStarsMovie + element.avaliation,
+    // );
 
-    var mediaStarMovie = totalStarsMovie / reviewsMovie.length;
+    // var mediaStarMovie = totalStarsMovie / reviewsMovie.length;
 
     return Scaffold(
       appBar: AppBar(
@@ -79,7 +73,7 @@ class _MovieDetailState extends State<MovieDetail> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Stars(mediaStarMovie),
+                      //Stars(mediaStarMovie),
                       IconButton(
                         onPressed: () {
                           Navigator.of(context).pushReplacementNamed(

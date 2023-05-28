@@ -1,12 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_review/components/bannerReviewCarousel.dart';
-import 'package:movies_review/models/auth.dart';
-import 'package:movies_review/models/reviewList.dart';
 import 'package:movies_review/utils/appRoutes.dart';
-import 'package:provider/provider.dart';
-
-import '../models/review.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,18 +14,15 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Provider.of<ReviewList>(context, listen: false).loadReviews();
   }
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ReviewList>(context);
-    final List<Review> reviewList = provider.reviews;
     List<Widget> widgets = [];
 
-    reviewList
-        .map((e) => widgets.add(BannerReviewCarousel(review: e)))
-        .toList();
+    // reviewList
+    //     .map((e) => widgets.add(BannerReviewCarousel(review: e)))
+    //     .toList();
 
     return Stack(
       children: [

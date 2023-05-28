@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:movies_review/models/auth.dart';
-import 'package:movies_review/models/user.dart';
-import 'package:movies_review/models/userList.dart';
-import 'package:provider/provider.dart';
+import '../core/models/authForm.dart';
+import '../core/service/auth/auth_service.dart';
 
 class RegisterPageForm extends StatefulWidget {
   const RegisterPageForm({super.key});
@@ -17,12 +13,7 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
   final _formKey = GlobalKey<FormState>();
   final _passwordController = TextEditingController();
 
-  final Map<String, String> _registerData = {
-    'name': '',
-    'nickname': '',
-    'email': '',
-    'password': '',
-  };
+  final _formData = AuthFormData();
 
   Future<void> _submit() async {
     final isValid = _formKey.currentState?.validate() ?? false;
@@ -31,13 +22,13 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
 
     _formKey.currentState?.save();
 
-    Auth auth = Provider.of(context, listen: false);
-
     try {
-      await auth.signUp(
-        _registerData['email']!,
-        _registerData['password']!,
-        _registerData,
+      await AuthService().signUp(
+        _formData.name,
+        _formData.email,
+        _formData.nickname,
+        _formData.password,
+        _formData.image,
       );
     } catch (error) {
       print(error.toString());
@@ -110,17 +101,18 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                                           Color.fromARGB(144, 255, 255, 255)),
                                 ),
                               ),
+                              key: ValueKey('name'),
                               keyboardType: TextInputType.name,
                               cursorColor:
                                   const Color.fromARGB(255, 221, 221, 221),
-                              onSaved: (newValue) =>
-                                  _registerData['name'] = newValue ?? '',
                               validator: (value) {
                                 final name = value ?? '';
                                 if (name.isEmpty) {
                                   return 'Informe seu nome';
                                 }
+                                return null;
                               },
+                              onChanged: (value) => _formData.name = value,
                             ),
                           ),
                           const SizedBox(height: 20),
@@ -146,13 +138,10 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                                           color: Color.fromARGB(
                                               144, 255, 255, 255)))),
                               keyboardType: TextInputType.name,
+                              key: ValueKey('nickName'),
                               cursorColor:
                                   const Color.fromARGB(255, 221, 221, 221),
-                              onSaved: (newValue) =>
-                                  _registerData['nickname'] = newValue ?? '',
-                              validator: (value) {
-                                final name = value ?? '';
-                              },
+                              onChanged: (value) => _formData.nickname = value,
                             ),
                           ),
                           const SizedBox(height: 20),
@@ -178,17 +167,18 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                                           color: Color.fromARGB(
                                               144, 255, 255, 255)))),
                               keyboardType: TextInputType.text,
+                              key: ValueKey('email'),
                               cursorColor:
                                   const Color.fromARGB(255, 221, 221, 221),
-                              onSaved: (newValue) =>
-                                  _registerData['email'] = newValue ?? '',
                               validator: (value) {
                                 final email = value ?? '';
                                 if (email.trim().isEmpty ||
                                     !email.contains('@')) {
                                   return 'Informe um email válido';
                                 }
+                                return null;
                               },
+                              onChanged: (value) => _formData.email = value,
                             ),
                           ),
                           const SizedBox(height: 20),
@@ -216,6 +206,7 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                                           color: Color.fromARGB(
                                               144, 255, 255, 255)))),
                               keyboardType: TextInputType.name,
+                              key: ValueKey('password'),
                               cursorColor:
                                   const Color.fromARGB(255, 221, 221, 221),
                               validator: (value) {
@@ -223,7 +214,7 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                                 if (password.isEmpty || password.length < 5) {
                                   return 'Informe uma senha maior que 5 caracteres';
                                 } else {
-                                  null;
+                                  return null;
                                 }
                               },
                             ),
@@ -254,8 +245,6 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                               keyboardType: TextInputType.name,
                               cursorColor:
                                   const Color.fromARGB(255, 221, 221, 221),
-                              onSaved: (newValue) =>
-                                  _registerData['password'] = newValue ?? '',
                               validator: (value) {
                                 final password = value ?? '';
                                 if (password != _passwordController.text) {
@@ -264,6 +253,7 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                                   return null;
                                 }
                               },
+                              onChanged: (value) => _formData.password = value,
                             ),
                           ),
                         ],

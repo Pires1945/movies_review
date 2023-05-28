@@ -1,5 +1,3 @@
-import 'package:movies_review/components/movieGrid.dart';
-
 class AppRoutes {
   static const AUTHORHOME = '/';
   static const SIGNUP = '/signup';

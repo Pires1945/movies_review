@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movies_review/models/movie.dart';
 
 class Review extends ChangeNotifier {
   String id;

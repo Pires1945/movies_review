@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies_review/models/reviewList.dart';
-import 'package:provider/provider.dart';
-import '../models/movie.dart';
+
+import '../core/models/movie.dart';
 
 class ReviewForm extends StatefulWidget {
   const ReviewForm({super.key});
@@ -23,24 +22,24 @@ class _ReviewFormState extends State<ReviewForm> {
 
     _formKey.currentState?.save();
 
-    try {
-      await Provider.of<ReviewList>(context, listen: false)
-          .saveReview(_formData);
-      Navigator.of(context).pop();
-    } catch (error) {
-      await showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Erro!'),
-          content: Text(error.toString()),
-          actions: [
-            TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Ok'))
-          ],
-        ),
-      );
-    }
+    // try {
+    //   await Provider.of<ReviewList>(context, listen: false)
+    //       .saveReview(_formData);
+    //   Navigator.of(context).pop();
+    // } catch (error) {
+    //   await showDialog(
+    //     context: context,
+    //     builder: (context) => AlertDialog(
+    //       title: const Text('Erro!'),
+    //       content: Text(error.toString()),
+    //       actions: [
+    //         TextButton(
+    //             onPressed: () => Navigator.of(context).pop(),
+    //             child: const Text('Ok'))
+    //       ],
+    //     ),
+    //   );
+    // }
   }
 
   @override
