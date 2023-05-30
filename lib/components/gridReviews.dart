@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:movies_review/components/reviewItem.dart';
+import 'package:movies_review/core/models/review.dart';
+import 'package:movies_review/core/service/review/reviewService.dart';
 
 class GridReviews extends StatefulWidget {
   const GridReviews({super.key});
@@ -41,10 +44,10 @@ class _GridReviewsState extends State<GridReviews> {
               height: 100,
               width: double.infinity,
               color: const Color.fromARGB(255, 20, 20, 20),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 30),
+              child: const Padding(
+                padding: EdgeInsets.only(top: 30),
                 child: Row(
-                  children: const [
+                  children: [
                     Padding(
                       padding: EdgeInsets.only(left: 20),
                       child: Text(
@@ -59,19 +62,33 @@ class _GridReviewsState extends State<GridReviews> {
                 ),
               ),
             ),
-            // Flexible(
-            //   child: ListView.builder(
-            //     itemCount: loadedReviews.length,
-            //     padding: const EdgeInsets.only(bottom: 60),
-            //     itemBuilder: (context, index) => ChangeNotifierProvider.value(
-            //       value: loadedReviews[index],
-            //       child: Padding(
-            //         padding: const EdgeInsets.all(3.0),
-            //         child: ReviewItem(loadedReviews[index]),
-            //       ),
-            //     ),
-            //   ),
-            // )
+            StreamBuilder<List<Review>>(
+              stream: ReviewService().reviewStream(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return const Center(
+                    child: Text('Sem dados'),
+                  );
+                } else {
+                  final reviews = snapshot.data!;
+                  return Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.all(3.0),
+                      child: ListView.builder(
+                        itemCount: reviews.length,
+                        padding: const EdgeInsets.only(bottom: 60),
+                        itemBuilder: (context, index) =>
+                            ReviewItem(snapshot.data![index]),
+                      ),
+                    ),
+                  );
+                }
+              },
+            ),
           ],
         ),
       ],

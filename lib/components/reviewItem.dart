@@ -9,6 +9,7 @@ class ReviewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top: 3, bottom: 3),
       decoration: BoxDecoration(
           color: Colors.black54, borderRadius: BorderRadius.circular(12)),
       child: ListTile(
