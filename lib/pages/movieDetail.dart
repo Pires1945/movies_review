@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:movies_review/components/widgetStars.dart';
+import 'package:movies_review/core/models/review.dart';
+import 'package:movies_review/core/service/review/reviewService.dart';
 import 'package:movies_review/utils/appRoutes.dart';
 
 import '../core/models/movie.dart';
@@ -22,19 +25,6 @@ class _MovieDetailState extends State<MovieDetail> {
   Widget build(BuildContext context) {
     const baseUrlImage = 'https://image.tmdb.org/t/p/w220_and_h330_face';
     final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
-    //var totalStarsMovie = 0;
-
-    // final reviewsMovie = reviews
-    //     .where(
-    //       (element) => element.movieId == movie.id,
-    //     )
-    //     .toList();
-
-    // reviewsMovie.forEach(
-    //   (element) => totalStarsMovie = totalStarsMovie + element.avaliation,
-    // );
-
-    // var mediaStarMovie = totalStarsMovie / reviewsMovie.length;
 
     return Scaffold(
       appBar: AppBar(
@@ -60,9 +50,9 @@ class _MovieDetailState extends State<MovieDetail> {
               ),
               Column(
                 children: [
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
                         'Avaliação dos usuários',
                         textAlign: TextAlign.start,
@@ -73,7 +63,30 @@ class _MovieDetailState extends State<MovieDetail> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      //Stars(mediaStarMovie),
+                      StreamBuilder<List<Review>>(
+                        stream: ReviewService().reviewStream(),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData) {
+                            return Text('Sem Avaliações');
+                          } else {
+                            var totalStarsMovie = 0;
+                            final _reviews = snapshot.data;
+                            final review = _reviews!
+                                .where((element) => element.movieId == movie.id)
+                                .toList();
+
+                            review.forEach((element) =>
+                                totalStarsMovie + element.avaliation);
+
+                            var mediaStarMovie =
+                                totalStarsMovie / review.length;
+
+                            print(mediaStarMovie);
+
+                            return Stars(mediaStarMovie);
+                          }
+                        },
+                      ),
                       IconButton(
                         onPressed: () {
                           Navigator.of(context).pushReplacementNamed(

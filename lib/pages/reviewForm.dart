@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movies_review/core/service/auth/auth_service.dart';
+import 'package:movies_review/core/service/review/reviewService.dart';
 
 import '../core/models/movie.dart';
 
@@ -14,13 +16,21 @@ class _ReviewFormState extends State<ReviewForm> {
   final _formData = Map<String, Object>();
 
   Future<void> _submitForm() async {
+    final user = AuthService().currentUser;
     final isValid = _formKey.currentState?.validate() ?? false;
+
+    _formData['userId'] = AuthService().currentUser!.userId;
 
     if (!isValid) {
       return;
     }
 
     _formKey.currentState?.save();
+
+    if (user != null) {
+      ReviewService().saveReview(_formData);
+      Navigator.of(context).pop();
+    }
 
     // try {
     //   await Provider.of<ReviewList>(context, listen: false)
