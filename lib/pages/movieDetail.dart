@@ -63,13 +63,14 @@ class _MovieDetailState extends State<MovieDetail> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
+                      // Conferir o cálculo de estrelas e criar a Stream para o widgets stars
                       StreamBuilder<List<Review>>(
                         stream: ReviewService().reviewStream(),
                         builder: (context, snapshot) {
                           if (!snapshot.hasData) {
                             return Text('Sem Avaliações');
                           } else {
-                            var totalStarsMovie = 0;
+                            var totalStarsMovie = movie.countStar;
                             final _reviews = snapshot.data;
                             final review = _reviews!
                                 .where((element) => element.movieId == movie.id)
