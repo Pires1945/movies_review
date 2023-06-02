@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:movies_review/components/movieItem.dart';
 import 'package:provider/provider.dart';
-
 import '../core/models/movie.dart';
 import '../core/models/movieList.dart';
+import 'movieItem.dart';
 
 class MovieGrid extends StatefulWidget {
   const MovieGrid({super.key});

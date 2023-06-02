@@ -31,25 +31,6 @@ class _ReviewFormState extends State<ReviewForm> {
       ReviewService().saveReview(_formData);
       Navigator.of(context).pop();
     }
-
-    // try {
-    //   await Provider.of<ReviewList>(context, listen: false)
-    //       .saveReview(_formData);
-    //   Navigator.of(context).pop();
-    // } catch (error) {
-    //   await showDialog(
-    //     context: context,
-    //     builder: (context) => AlertDialog(
-    //       title: const Text('Erro!'),
-    //       content: Text(error.toString()),
-    //       actions: [
-    //         TextButton(
-    //             onPressed: () => Navigator.of(context).pop(),
-    //             child: const Text('Ok'))
-    //       ],
-    //     ),
-    //   );
-    // }
   }
 
   @override
