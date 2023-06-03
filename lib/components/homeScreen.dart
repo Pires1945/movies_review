@@ -41,11 +41,10 @@ class _HomeScreenState extends State<HomeScreen> {
         Column(
           children: [
             Container(
-              height: 60,
               width: double.infinity,
               color: Color.fromARGB(255, 20, 20, 20),
               child: Padding(
-                padding: const EdgeInsets.only(top: 4),
+                padding: const EdgeInsets.only(top: 3),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -91,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.all(3),
+                  padding: const EdgeInsetsDirectional.all(3),
                   child: StreamBuilder<List<Review>>(
                     stream: ReviewService().reviewStream(),
                     builder: (context, snapshot) {
@@ -113,9 +112,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         return CarouselSlider(
                           options: CarouselOptions(
                             autoPlay: true,
+                            autoPlayAnimationDuration: Duration(seconds: 1),
                             enlargeCenterPage: true,
                             enlargeStrategy: CenterPageEnlargeStrategy.zoom,
-                            viewportFraction: 0.47,
+                            viewportFraction: 0.46,
                           ),
                           items: widgets.map((e) {
                             return Builder(builder: (BuildContext context) {

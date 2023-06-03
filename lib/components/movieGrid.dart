@@ -12,19 +12,18 @@ class MovieGrid extends StatefulWidget {
 
 class _MovieGridState extends State<MovieGrid> {
   bool isSearch = false;
-  //final _formKey = GlobalKey<FormState>();
-  // late String _searchText;
+  final _formKey = GlobalKey<FormState>();
+  late String _searchText;
 
-  // Future<void> _submitSearch() async {
-  //   final isValid = _formKey.currentState?.validate() ?? false;
-  //   if (!isValid) return;
-  //   _formKey.currentState?.save();
-  //   setState(() => isSearch = false);
+  Future<void> _submitSearch() async {
+    final isValid = _formKey.currentState?.validate() ?? false;
+    if (!isValid) return;
+    _formKey.currentState?.save();
+    setState(() => isSearch = false);
 
-  //   await Provider.of<MovieList>(context, listen: false)
-  //       .searchMovies(_searchText);
-  //   print(_searchText);
-  // }
+    await MovieService().searchMovie(_searchText);
+    print(_searchText);
+  }
 
   @override
   void initState() {
@@ -56,43 +55,43 @@ class _MovieGridState extends State<MovieGrid> {
         Column(
           children: [
             Container(
-              height: 60,
+              height: MediaQuery.of(context).size.height * 0.08,
               width: double.infinity,
               color: const Color.fromARGB(255, 20, 20, 20),
               child: Padding(
-                padding: const EdgeInsets.only(top: 4),
+                padding: const EdgeInsets.only(top: 3),
                 child: isSearch
                     ? Padding(
                         padding: const EdgeInsets.all(8),
-                        // child: Form(
-                        //   key: _formKey,
-                        //   child: TextFormField(
-                        //     autofocus: true,
-                        //     cursorColor: Colors.white,
-                        //     style: const TextStyle(
-                        //         color: Colors.white, fontSize: 20),
-                        //     onSaved: (newValue) =>
-                        //         _searchText = newValue as String,
-                        //     decoration: InputDecoration(
-                        //       suffixIcon: IconButton(
-                        //           onPressed: _submitSearch,
-                        //           icon: const Icon(
-                        //             Icons.search,
-                        //             color: Colors.white,
-                        //             size: 36,
-                        //           )),
-                        //       border: OutlineInputBorder(
-                        //         borderRadius: BorderRadius.circular(20),
-                        //         borderSide: BorderSide.none,
-                        //       ),
-                        //       filled: true,
-                        //       fillColor: const Color.fromARGB(255, 71, 71, 71),
-                        //     ),
-                        //     // validator: (value) {
-                        //     //   final name = value ?? '';
-                        //     // },
-                        //   ),
-                        // ),
+                        child: Form(
+                          key: _formKey,
+                          child: TextFormField(
+                            autofocus: true,
+                            cursorColor: Colors.white,
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 20),
+                            onSaved: (newValue) =>
+                                _searchText = newValue as String,
+                            decoration: InputDecoration(
+                              suffixIcon: IconButton(
+                                  onPressed: _submitSearch,
+                                  icon: const Icon(
+                                    Icons.search,
+                                    color: Colors.white,
+                                    size: 36,
+                                  )),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide: BorderSide.none,
+                              ),
+                              filled: true,
+                              fillColor: const Color.fromARGB(255, 71, 71, 71),
+                            ),
+                            // validator: (value) {
+                            //   final name = value ?? '';
+                            // },
+                          ),
+                        ),
                       )
                     : Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -124,7 +123,7 @@ class _MovieGridState extends State<MovieGrid> {
               ),
             ),
             isSearch
-                ? Text('Busca....')
+                ? const Text('Busca....')
                 : StreamBuilder<List<Movie>>(
                     stream: MovieService().movieStream(),
                     builder: (context, snapshot) {

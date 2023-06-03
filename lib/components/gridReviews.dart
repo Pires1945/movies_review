@@ -40,11 +40,11 @@ class _GridReviewsState extends State<GridReviews> {
         Column(
           children: [
             Container(
-              height: 60,
+              height: MediaQuery.of(context).size.height * 0.07,
               width: double.infinity,
               color: const Color.fromARGB(255, 20, 20, 20),
               child: const Padding(
-                padding: EdgeInsets.only(top: 4),
+                padding: EdgeInsets.only(top: 3),
                 child: Row(
                   children: [
                     Padding(
