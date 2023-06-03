@@ -1,6 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:movies_review/core/service/review/reviewService.dart';
 import 'package:movies_review/utils/appRoutes.dart';
+
+import '../core/models/review.dart';
+import 'bannerReviewCarousel.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,12 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> widgets = [];
-
-    // reviewList
-    //     .map((e) => widgets.add(BannerReviewCarousel(review: e)))
-    //     .toList();
-
     return Stack(
       children: [
         Container(
@@ -94,18 +92,42 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.all(3),
-                  child: CarouselSlider(
-                    options: CarouselOptions(
-                      autoPlay: true,
-                      enlargeCenterPage: true,
-                      enlargeStrategy: CenterPageEnlargeStrategy.zoom,
-                      viewportFraction: 0.47,
-                    ),
-                    items: widgets.map((e) {
-                      return Builder(builder: (BuildContext context) {
-                        return e;
-                      });
-                    }).toList(),
+                  child: StreamBuilder<List<Review>>(
+                    stream: ReviewService().reviewStream(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                        const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else {
+                        final reviewList = snapshot.data;
+                        List<Widget> widgets = [];
+                        reviewList!
+                            .map((e) =>
+                                widgets.add(BannerReviewCarousel(review: e)))
+                            .toList();
+                        return CarouselSlider(
+                          options: CarouselOptions(
+                            autoPlay: true,
+                            enlargeCenterPage: true,
+                            enlargeStrategy: CenterPageEnlargeStrategy.zoom,
+                            viewportFraction: 0.47,
+                          ),
+                          items: widgets.map((e) {
+                            return Builder(builder: (BuildContext context) {
+                              return e;
+                            });
+                          }).toList(),
+                        );
+                      }
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    },
                   ),
                 ),
                 Container(
