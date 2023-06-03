@@ -43,11 +43,11 @@ class _HomeScreenState extends State<HomeScreen> {
         Column(
           children: [
             Container(
-              height: 100,
+              height: 60,
               width: double.infinity,
               color: Color.fromARGB(255, 20, 20, 20),
               child: Padding(
-                padding: const EdgeInsets.only(top: 30),
+                padding: const EdgeInsets.only(top: 4),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

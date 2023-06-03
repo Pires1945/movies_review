@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:movies_review/components/reviewItem.dart';
 import 'package:movies_review/core/models/review.dart';
 import 'package:movies_review/core/service/review/reviewService.dart';
@@ -41,11 +40,11 @@ class _GridReviewsState extends State<GridReviews> {
         Column(
           children: [
             Container(
-              height: 100,
+              height: 60,
               width: double.infinity,
               color: const Color.fromARGB(255, 20, 20, 20),
               child: const Padding(
-                padding: EdgeInsets.only(top: 30),
+                padding: EdgeInsets.only(top: 4),
                 child: Row(
                   children: [
                     Padding(

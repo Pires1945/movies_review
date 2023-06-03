@@ -34,36 +34,38 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _widgetOptions[_selectedIndex] as Widget,
-      bottomSheet: BottomNavigationBar(
-        backgroundColor: Colors.black,
-        selectedItemColor: Colors.white,
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        items: const [
-          BottomNavigationBarItem(
-            label: 'Início',
-            icon: Icon(
-              Icons.home,
-              color: Colors.white,
+    return SafeArea(
+      child: Scaffold(
+        body: _widgetOptions[_selectedIndex] as Widget,
+        bottomSheet: BottomNavigationBar(
+          backgroundColor: Colors.black,
+          selectedItemColor: Colors.white,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          items: const [
+            BottomNavigationBarItem(
+              label: 'Início',
+              icon: Icon(
+                Icons.home,
+                color: Colors.white,
+              ),
             ),
-          ),
-          BottomNavigationBarItem(
-            label: 'Filmes',
-            icon: Icon(
-              Icons.movie_creation_outlined,
-              color: Colors.white,
+            BottomNavigationBarItem(
+              label: 'Filmes',
+              icon: Icon(
+                Icons.movie_creation_outlined,
+                color: Colors.white,
+              ),
             ),
-          ),
-          BottomNavigationBarItem(
-            label: 'Críticas',
-            icon: Icon(
-              Icons.reviews_outlined,
-              color: Colors.white,
+            BottomNavigationBarItem(
+              label: 'Críticas',
+              icon: Icon(
+                Icons.reviews_outlined,
+                color: Colors.white,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

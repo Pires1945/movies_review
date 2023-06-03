@@ -4,7 +4,16 @@ import 'package:movies_review/core/models/review.dart';
 import 'package:movies_review/core/service/review/reviewService.dart';
 
 class ReviewMockService implements ReviewService {
-  static final List<Review> _reviews = [];
+  static final List<Review> _reviews = [
+    Review(
+        id: '123',
+        userId: '321',
+        movieTitle: 'teste',
+        movieId: 100,
+        review: 'fjdlksafjdskljafjhdskafhdsjakcnacioudnceu',
+        avaliation: 5,
+        date: DateTime.now()),
+  ];
   static MultiStreamController<List<Review>>? _controller;
 
   static final _reviewStream = Stream<List<Review>>.multi((controller) {
@@ -19,6 +28,7 @@ class ReviewMockService implements ReviewService {
 
   @override
   Future<Review> saveReview(Map<String, Object> data) async {
+    print('teste');
     bool hasId = data['id'] != null;
     final newReview = Review(
       id: hasId ? data['id'] as String : Random().nextDouble().toString(),
