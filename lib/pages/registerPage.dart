@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:movies_review/components/userImagePicker.dart';
 import '../core/models/authForm.dart';
 import '../core/service/auth/auth_service.dart';
 
@@ -15,10 +18,24 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
 
   final _formData = AuthFormData();
 
+  void _handleImagePick(File image) {
+    _formData.image = image;
+  }
+
+  void _showError(String msg) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: (Text(msg)),
+      backgroundColor: Theme.of(context).colorScheme.error,
+    ));
+  }
+
   Future<void> _submit() async {
     final isValid = _formKey.currentState?.validate() ?? false;
-
     if (!isValid) return;
+
+    if (_formData.image == null) {
+      return _showError('Selecione uma imagem');
+    }
 
     _formKey.currentState?.save();
 
@@ -78,6 +95,7 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                       key: _formKey,
                       child: Column(
                         children: [
+                          UserImagePicker(onImagePick: _handleImagePick),
                           Container(
                             height: 45,
                             child: TextFormField(

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:movies_review/utils/appRoutes.dart';
 
@@ -12,9 +14,26 @@ class Settings extends StatefulWidget {
 
 class _SettingsState extends State<Settings> {
   final user = AuthService().currentUser;
+  static const _defaultImage = 'assets/images/avatar.png';
   @override
   void initState() {
     super.initState();
+  }
+
+  Widget _showUserImage(String imageUrl) {
+    ImageProvider? provider;
+    final uri = Uri.parse(imageUrl);
+
+    if (uri.path.contains(_defaultImage)) {
+      provider = const AssetImage(_defaultImage);
+    } else if (uri.scheme.contains('http')) {
+      provider = NetworkImage(uri.toString());
+    } else {
+      provider = FileImage(File(uri.toString()));
+    }
+    return CircleAvatar(
+      backgroundImage: provider,
+    );
   }
 
   @override
@@ -22,7 +41,7 @@ class _SettingsState extends State<Settings> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Color.fromARGB(255, 20, 20, 20),
+        backgroundColor: const Color.fromARGB(255, 20, 20, 20),
         title: const Text(
           'Configurações',
           style: TextStyle(
@@ -42,14 +61,7 @@ class _SettingsState extends State<Settings> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: Colors.grey[800],
-                  child: Icon(
-                    Icons.person,
-                    color: Colors.grey[350],
-                    size: 36,
-                  ),
-                ),
+                leading: _showUserImage(user!.imageUrl),
                 title: Text(
                   user!.name,
                   style: const TextStyle(
