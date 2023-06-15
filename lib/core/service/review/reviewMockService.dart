@@ -5,14 +5,14 @@ import 'package:movies_review/core/service/review/reviewService.dart';
 
 class ReviewMockService implements ReviewService {
   static final List<Review> _reviews = [
-    Review(
-        id: '123',
-        userId: '321',
-        movieTitle: 'teste',
-        movieId: 100,
-        review: 'fjdlksafjdskljafjhdskafhdsjakcnacioudnceu',
-        avaliation: 5,
-        date: DateTime.now()),
+    // Review(
+    //     id: '123',
+    //     userId: '321',
+    //     movieTitle: 'teste',
+    //     movieId: 100,
+    //     review: 'fjdlksafjdskljafjhdskafhdsjakcnacioudnceu',
+    //     avaliation: 5,
+    //     date: DateTime.now()),
   ];
   static MultiStreamController<List<Review>>? _controller;
 
