@@ -63,26 +63,23 @@ class _MovieDetailState extends State<MovieDetail> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      // Conferir o cálculo de estrelas e criar a Stream para o widgets stars
                       StreamBuilder<List<Review>>(
                         stream: ReviewService().reviewStream(),
                         builder: (context, snapshot) {
                           if (!snapshot.hasData) {
                             return Text('Sem Avaliações');
                           } else {
-                            var totalStarsMovie = movie.countStar;
+                            var totalStarsMovie = 0;
                             final _reviews = snapshot.data;
                             final review = _reviews!
                                 .where((element) => element.movieId == movie.id)
                                 .toList();
 
                             review.forEach((element) =>
-                                totalStarsMovie + element.avaliation);
+                                totalStarsMovie += element.avaliation);
 
                             var mediaStarMovie =
                                 totalStarsMovie / review.length;
-
-                            print(mediaStarMovie);
 
                             return Stars(mediaStarMovie);
                           }
@@ -103,7 +100,7 @@ class _MovieDetailState extends State<MovieDetail> {
                     ],
                   ),
                   Container(
-                    color: Color.fromARGB(255, 49, 49, 49),
+                    color: const Color.fromARGB(255, 49, 49, 49),
                     child: Column(children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),

@@ -33,6 +33,7 @@ class ReviewMockService implements ReviewService {
     final newReview = Review(
       id: hasId ? data['id'] as String : Random().nextDouble().toString(),
       userId: data['userId'] as String,
+      userImageUrl: data['userImage'] as String,
       movieTitle: data['movieTitle'] as String,
       movieId: data['movieId'] as int,
       review: data['review'] as String,

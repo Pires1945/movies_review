@@ -1,17 +1,13 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:movies_review/core/service/auth/auth_service.dart';
-
 import '../core/models/review.dart';
 
 class ReviewItem extends StatelessWidget {
   final Review review;
   ReviewItem(this.review, {super.key});
   static const _defaultImage = 'assets/images/avatar.png';
-  final user = AuthService().currentUser;
 
-  Widget _showUserImage(String imageUrl) {
+  Widget _showReviewImage(String imageUrl) {
     ImageProvider? provider;
     final uri = Uri.parse(imageUrl);
 
@@ -35,7 +31,7 @@ class ReviewItem extends StatelessWidget {
           color: Colors.black54, borderRadius: BorderRadius.circular(12)),
       child: ListTile(
         leading: CircleAvatar(
-          child: _showUserImage(user!.imageUrl),
+          child: _showReviewImage(review.userImageUrl),
         ),
         title: Padding(
           padding: const EdgeInsets.only(left: 5),

@@ -20,6 +20,7 @@ class _ReviewFormState extends State<ReviewForm> {
     final isValid = _formKey.currentState?.validate() ?? false;
 
     _formData['userId'] = AuthService().currentUser!.userId;
+    _formData['userImage'] = AuthService().currentUser!.imageUrl;
 
     if (!isValid) {
       return;
