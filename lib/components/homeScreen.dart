@@ -59,14 +59,27 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                    IconButton(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed(AppRoutes.SETTINGS);
-                      },
-                      icon: const Icon(
-                        Icons.settings,
-                        color: Colors.white,
-                        size: 30,
+                    Container(
+                      child: Row(
+                        children: [
+                          IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.notifications,
+                                color: Colors.white,
+                              )),
+                          IconButton(
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pushNamed(AppRoutes.SETTINGS);
+                            },
+                            icon: const Icon(
+                              Icons.settings,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
