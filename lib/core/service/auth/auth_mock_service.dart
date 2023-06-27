@@ -6,7 +6,7 @@ import '../../models/user.dart';
 import 'auth_service.dart';
 
 class AuthMockService implements AuthService {
-  static final _defaultUser = User(
+  static final _defaultUser = UserApp(
     userId: '123',
     name: 'Teste',
     email: 'teste@gmail.com',
@@ -15,19 +15,19 @@ class AuthMockService implements AuthService {
     imageUrl: 'assets/images/avatar.png',
   );
 
-  static Map<String, User> _users = {_defaultUser.email: _defaultUser};
-  static User? _currentUser;
-  static MultiStreamController<User?>? _controller;
-  static final _userStream = Stream<User?>.multi((controller) {
+  static Map<String, UserApp> _users = {_defaultUser.email: _defaultUser};
+  static UserApp? _currentUser;
+  static MultiStreamController<UserApp?>? _controller;
+  static final _userStream = Stream<UserApp?>.multi((controller) {
     _controller = controller;
     _updateUser(_defaultUser);
   });
 
   @override
-  User? get currentUser => _currentUser;
+  UserApp? get currentUser => _currentUser;
 
   @override
-  Stream<User?> get userChanges => _userStream;
+  Stream<UserApp?> get userChanges => _userStream;
 
   @override
   Future<void> login(String email, String password) async {
@@ -42,7 +42,7 @@ class AuthMockService implements AuthService {
   @override
   Future<void> signUp(String name, String email, String nickName,
       String password, File? image) async {
-    final newUser = User(
+    final newUser = UserApp(
       userId: Random().nextDouble().toString(),
       name: name,
       email: email,
@@ -55,7 +55,7 @@ class AuthMockService implements AuthService {
     _updateUser(newUser);
   }
 
-  static void _updateUser(User? user) {
+  static void _updateUser(UserApp? user) {
     _currentUser = user;
     _controller?.add(_currentUser);
   }

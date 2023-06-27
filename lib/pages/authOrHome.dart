@@ -19,15 +19,15 @@ class AuthOrHome extends StatelessWidget {
       future: init(context),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return LoagingPage();
+          return const LoagingPage();
         } else {
-          return StreamBuilder<User?>(
+          return StreamBuilder<UserApp?>(
             stream: AuthService().userChanges,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return LoagingPage();
+                return const LoagingPage();
               } else {
-                return snapshot.hasData ? HomePage() : LoginPage();
+                return snapshot.hasData ? const HomePage() : const LoginPage();
               }
             },
           );

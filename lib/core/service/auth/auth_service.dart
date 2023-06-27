@@ -1,11 +1,13 @@
 import 'dart:io';
 
+import 'package:movies_review/core/service/auth/auth_firebase_service.dart';
+
 import '../../models/user.dart';
 import 'auth_mock_service.dart';
 
 abstract class AuthService {
-  User? get currentUser;
-  Stream<User?> get userChanges;
+  UserApp? get currentUser;
+  Stream<UserApp?> get userChanges;
 
   Future<void> signUp(
     String name,
@@ -23,6 +25,6 @@ abstract class AuthService {
   Future<void> logout();
 
   factory AuthService() {
-    return AuthMockService();
+    return AuthFirebaseService();
   }
 }

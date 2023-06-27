@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class User with ChangeNotifier {
+class UserApp with ChangeNotifier {
   String userId;
   String name;
   String nickname;
@@ -8,7 +8,7 @@ class User with ChangeNotifier {
   String password;
   String imageUrl;
 
-  User(
+  UserApp(
       {required this.userId,
       required this.name,
       required this.nickname,
