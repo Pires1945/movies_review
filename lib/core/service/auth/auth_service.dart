@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:movies_review/core/service/auth/auth_firebase_service.dart';
 
 import '../../models/user.dart';
-import 'auth_mock_service.dart';
 
 abstract class AuthService {
   UserApp? get currentUser;

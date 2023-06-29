@@ -40,6 +40,7 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
     _formKey.currentState?.save();
 
     try {
+      if (!mounted) return;
       await AuthService().signUp(
         _formData.name,
         _formData.email,
