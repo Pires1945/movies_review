@@ -6,7 +6,23 @@ import 'package:movies_review/core/service/review/reviewService.dart';
 class ReviewFirebaseService implements ReviewService {
   @override
   Stream<List<Review>> reviewStream() {
-    return Stream.empty();
+    final store = FirebaseFirestore.instance;
+    final snapshots = store
+        .collection('reviews')
+        .withConverter(
+          fromFirestore: _fromFirestore,
+          toFirestore: _toFirestore,
+        )
+        .snapshots();
+
+    return Stream<List<Review>>.multi((controller) {
+      snapshots.listen((snapshot) {
+        List<Review> list = snapshot.docs.map((e) {
+          return e.data();
+        }).toList();
+        controller.add(list);
+      });
+    });
   }
 
   @override

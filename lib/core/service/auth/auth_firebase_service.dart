@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../../models/user.dart';
 import 'auth_service.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class AuthFirebaseService implements AuthService {
   static UserApp? _currentUser;
@@ -41,19 +42,31 @@ class AuthFirebaseService implements AuthService {
     String password,
     File? image,
   ) async {
-    final auth = FirebaseAuth.instance;
+    final signup = await Firebase.initializeApp(
+      name: 'userSignup',
+      options: Firebase.app().options,
+    );
+
+    final auth = FirebaseAuth.instanceFor(app: signup);
+
     UserCredential credential = await auth.createUserWithEmailAndPassword(
-        email: email, password: password);
+      email: email,
+      password: password,
+    );
 
-    if (credential.user == null) return;
+    if (credential.user != null) {
+      final imageName = '${credential.user!.uid}.jpg';
+      final imageUrl = await _uploadUserImage(image, imageName);
 
-    final imageName = '${credential.user!.uid}.jpg';
-    final imageUrl = await _uploadUserImage(image, imageName);
+      await credential.user?.updateDisplayName(name);
+      await credential.user?.updatePhotoURL(imageUrl);
 
-    await credential.user?.updateDisplayName(name);
-    await credential.user?.updatePhotoURL(imageUrl);
+      await login(email, password);
 
-    await _saveUserApp(_toUserApp(credential.user!, imageUrl));
+      _currentUser = _toUserApp(credential.user!, name, imageUrl);
+      await _saveUserApp(_currentUser!);
+    }
+    await signup.delete();
   }
 
   Future<String?> _uploadUserImage(File? image, String imageName) async {
@@ -77,7 +90,7 @@ class AuthFirebaseService implements AuthService {
     });
   }
 
-  static UserApp _toUserApp(User user, [String? imageUrl]) {
+  static UserApp _toUserApp(User user, [String? imageUrl, String? name]) {
     return UserApp(
       userId: user.uid,
       name: user.displayName ?? user.email!.split('@')[0],
