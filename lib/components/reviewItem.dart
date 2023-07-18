@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:movies_review/utils/appRoutes.dart';
 import '../core/models/review.dart';
 
 class ReviewItem extends StatelessWidget {
@@ -25,31 +26,37 @@ class ReviewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 3, bottom: 3),
-      decoration: BoxDecoration(
-          color: Colors.black54, borderRadius: BorderRadius.circular(12)),
-      child: ListTile(
-        leading: CircleAvatar(
-          child: _showReviewImage(review.userImageUrl),
-        ),
-        title: Padding(
-          padding: const EdgeInsets.only(left: 5),
-          child: Text(
-            review.movieTitle,
-            style: const TextStyle(color: Colors.white),
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context)
+            .pushReplacementNamed(AppRoutes.UPDATEREVIEW, arguments: review);
+      },
+      child: Container(
+        margin: const EdgeInsets.only(top: 3, bottom: 3),
+        decoration: BoxDecoration(
+            color: Colors.black54, borderRadius: BorderRadius.circular(12)),
+        child: ListTile(
+          leading: CircleAvatar(
+            child: _showReviewImage(review.userImageUrl),
           ),
-        ),
-        subtitle: Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: Text(
-            review.review,
-            style: const TextStyle(color: Colors.white),
+          title: Padding(
+            padding: const EdgeInsets.only(left: 5),
+            child: Text(
+              review.movieTitle,
+              style: const TextStyle(color: Colors.white),
+            ),
           ),
-        ),
-        trailing: Text(
-          '${review.avaliation.toString()} Estrelas',
-          style: const TextStyle(color: Colors.yellow),
+          subtitle: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Text(
+              review.review,
+              style: const TextStyle(color: Colors.white),
+            ),
+          ),
+          trailing: Text(
+            '${review.avaliation.toString()} Estrelas',
+            style: const TextStyle(color: Colors.yellow),
+          ),
         ),
       ),
     );

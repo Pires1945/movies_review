@@ -77,7 +77,10 @@ class _SettingsState extends State<Settings> {
                   Icons.navigate_next_rounded,
                   color: Colors.grey,
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context)
+                      .pushReplacementNamed(AppRoutes.MYPERFIL);
+                },
               ),
               Container(
                 child: Padding(

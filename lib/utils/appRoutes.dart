@@ -10,4 +10,6 @@ class AppRoutes {
   static const REGISTERFORM = '/register-page';
   static const USER = '/user-page';
   static const MYREVIEWS = '/my-reviews';
+  static const MYPERFIL = '/my-perfil';
+  static const UPDATEREVIEW = '/update-review';
 }

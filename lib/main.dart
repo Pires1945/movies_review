@@ -3,10 +3,12 @@ import 'package:movies_review/components/gridReviews.dart';
 import 'package:movies_review/components/movieGrid.dart';
 import 'package:movies_review/pages/authOrHome.dart';
 import 'package:movies_review/pages/movieDetail.dart';
+import 'package:movies_review/pages/myPerfil.dart';
 import 'package:movies_review/pages/myReviews.dart';
 import 'package:movies_review/pages/registerPage.dart';
 import 'package:movies_review/pages/reviewForm.dart';
 import 'package:movies_review/pages/settings.dart';
+import 'package:movies_review/pages/updateReviews.dart';
 import 'package:movies_review/pages/userPage.dart';
 import 'package:movies_review/utils/appRoutes.dart';
 
@@ -36,6 +38,8 @@ class MyApp extends StatelessWidget {
         AppRoutes.REGISTERFORM: (context) => RegisterPageForm(),
         AppRoutes.USER: (context) => UserPage(),
         AppRoutes.MYREVIEWS: (context) => MyReviews(),
+        AppRoutes.MYPERFIL: (context) => MyPerfil(),
+        AppRoutes.UPDATEREVIEW: (context) => UpdateReview(),
       },
     );
   }
