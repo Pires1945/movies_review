@@ -5,6 +5,7 @@ abstract class ReviewService {
   Stream<List<Review>> reviewStream();
 
   Future<Review> saveReview(Map<String, Object> data);
+  Future<void> updateReview(Map<String, Object> data);
 
   factory ReviewService() {
     return ReviewFirebaseService();

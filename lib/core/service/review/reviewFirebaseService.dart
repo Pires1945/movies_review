@@ -48,6 +48,17 @@ class ReviewFirebaseService implements ReviewService {
     return doc.data()!;
   }
 
+  CollectionReference review = FirebaseFirestore.instance.collection('reviews');
+
+  @override
+  Future<void> updateReview(Map<String, Object> data) {
+    return review
+        .doc(data['id'] as String)
+        .update({'review': data['review']})
+        .then((value) => print('Review Update'))
+        .catchError((error) => print('${error}'));
+  }
+
   Map<String, dynamic> _toFirestore(
     Review review,
     SetOptions? optrions,

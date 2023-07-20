@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_review/core/service/review/reviewService.dart';
 
 import '../core/models/movie.dart';
 import '../core/models/review.dart';
@@ -11,10 +12,26 @@ class UpdateReview extends StatefulWidget {
 }
 
 class _UpdateReviewState extends State<UpdateReview> {
+  final _formKey = GlobalKey<FormState>();
+  final _formData = Map<String, Object>();
+
+  Future<void> _submitForm() async {
+    final isValid = _formKey.currentState?.validate() ?? false;
+
+    if (!isValid) return;
+
+    _formKey.currentState?.save();
+
+    ReviewService().updateReview(_formData);
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     final Review review = ModalRoute.of(context)!.settings.arguments as Review;
     final Movie movie;
+    _formData['id'] = review.id;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -28,7 +45,7 @@ class _UpdateReviewState extends State<UpdateReview> {
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: Form(
-            //key: _formKey,
+            key: _formKey,
             child: ListView(
               children: [
                 Padding(
@@ -59,7 +76,7 @@ class _UpdateReviewState extends State<UpdateReview> {
                     maxLines: 30,
                     keyboardType: TextInputType.multiline,
                     style: const TextStyle(color: Colors.white),
-                    //onSaved: (newValue) => _formData['review'] = newValue ?? '',
+                    onSaved: (newValue) => _formData['review'] = newValue ?? '',
                   ),
                 ),
                 const Text(
@@ -131,7 +148,7 @@ class _UpdateReviewState extends State<UpdateReview> {
                   ],
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: _submitForm,
                   style: ElevatedButton.styleFrom(
                       backgroundColor:
                           const Color.fromARGB(255, 114, 113, 113)),
