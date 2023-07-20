@@ -27,7 +27,7 @@ class ReviewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onLongPress: () {
         Navigator.of(context)
             .pushReplacementNamed(AppRoutes.UPDATEREVIEW, arguments: review);
       },

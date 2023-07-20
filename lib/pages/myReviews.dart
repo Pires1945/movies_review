@@ -54,6 +54,8 @@ class _MyReviewsState extends State<MyReviews> {
             } else {
               final reviews = snapshot.data!
                   .where((element) => element.userId == user!.userId)
+                  .toList()
+                  .reversed
                   .toList();
               return ListView.builder(
                 itemCount: reviews.length,

@@ -54,7 +54,7 @@ class ReviewFirebaseService implements ReviewService {
   Future<void> updateReview(Map<String, Object> data) {
     return review
         .doc(data['id'] as String)
-        .update({'review': data['review']})
+        .update({'review': data['review'], 'avaliation': data['avaliation']})
         .then((value) => print('Review Update'))
         .catchError((error) => print('${error}'));
   }
