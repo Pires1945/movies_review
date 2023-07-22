@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:movies_review/components/reviewItemUpdate.dart';
 import 'package:movies_review/core/models/review.dart';
 import 'package:movies_review/core/service/auth/auth_service.dart';
 import 'package:movies_review/core/service/review/reviewService.dart';
-
-import '../components/reviewItem.dart';
 
 class MyReviews extends StatefulWidget {
   const MyReviews({super.key});
@@ -60,7 +59,8 @@ class _MyReviewsState extends State<MyReviews> {
               return ListView.builder(
                 itemCount: reviews.length,
                 padding: const EdgeInsets.only(bottom: 60),
-                itemBuilder: (context, index) => ReviewItem(reviews[index]),
+                itemBuilder: (context, index) =>
+                    ReviewItemUpdate(reviews[index]),
               );
             }
           },

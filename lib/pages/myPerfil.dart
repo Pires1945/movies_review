@@ -1,4 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import '../components/userImagePicker.dart';
+import '../core/models/authForm.dart';
+import '../core/service/auth/auth_service.dart';
 
 class MyPerfil extends StatefulWidget {
   const MyPerfil({super.key});
@@ -8,6 +13,17 @@ class MyPerfil extends StatefulWidget {
 }
 
 class _MyPerfilState extends State<MyPerfil> {
+  final user = AuthService().currentUser;
+  final _formKey = GlobalKey<FormState>();
+  final _passwordController = TextEditingController();
+  final bool update = true;
+
+  final _formData = AuthFormData();
+
+  void _handleImagePick(File image) {
+    _formData.image = image;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,22 +59,24 @@ class _MyPerfilState extends State<MyPerfil> {
                     Form(
                       child: Column(
                         children: [
+                          UserImagePicker(
+                              onImagePick: _handleImagePick, update: update),
                           Container(
                             height: 45,
                             child: TextFormField(
                               style: const TextStyle(color: Colors.white),
-                              decoration: const InputDecoration(
-                                labelText: 'Nome',
-                                labelStyle: TextStyle(
+                              decoration: InputDecoration(
+                                labelText: user!.name,
+                                labelStyle: const TextStyle(
                                     color: Color.fromARGB(111, 255, 255, 255),
                                     fontSize: 14),
-                                enabledBorder: OutlineInputBorder(
+                                enabledBorder: const OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(25)),
                                     borderSide: BorderSide(
                                         color:
                                             Color.fromARGB(80, 255, 255, 255))),
-                                focusedBorder: OutlineInputBorder(
+                                focusedBorder: const OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(25)),
                                   borderSide: BorderSide(
@@ -66,7 +84,7 @@ class _MyPerfilState extends State<MyPerfil> {
                                           Color.fromARGB(144, 255, 255, 255)),
                                 ),
                               ),
-                              key: ValueKey('name'),
+                              key: const ValueKey('name'),
                               keyboardType: TextInputType.name,
                               cursorColor:
                                   const Color.fromARGB(255, 221, 221, 221),
@@ -84,25 +102,25 @@ class _MyPerfilState extends State<MyPerfil> {
                             height: 45,
                             child: TextFormField(
                               style: const TextStyle(color: Colors.white),
-                              decoration: const InputDecoration(
-                                  labelText: 'Como quer ser chamado ?',
-                                  labelStyle: TextStyle(
+                              decoration: InputDecoration(
+                                  labelText: user!.nickname,
+                                  labelStyle: const TextStyle(
                                       color: Color.fromARGB(111, 255, 255, 255),
                                       fontSize: 14),
-                                  enabledBorder: OutlineInputBorder(
+                                  enabledBorder: const OutlineInputBorder(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(25)),
                                       borderSide: BorderSide(
                                           color: Color.fromARGB(
                                               80, 255, 255, 255))),
-                                  focusedBorder: OutlineInputBorder(
+                                  focusedBorder: const OutlineInputBorder(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(25)),
                                       borderSide: BorderSide(
                                           color: Color.fromARGB(
                                               144, 255, 255, 255)))),
                               keyboardType: TextInputType.name,
-                              key: ValueKey('nickName'),
+                              key: const ValueKey('nickName'),
                               cursorColor:
                                   const Color.fromARGB(255, 221, 221, 221),
                             ),
@@ -112,25 +130,25 @@ class _MyPerfilState extends State<MyPerfil> {
                             height: 45,
                             child: TextFormField(
                               style: const TextStyle(color: Colors.white),
-                              decoration: const InputDecoration(
-                                  labelText: 'Email',
-                                  labelStyle: TextStyle(
+                              decoration: InputDecoration(
+                                  labelText: user!.email,
+                                  labelStyle: const TextStyle(
                                       color: Color.fromARGB(111, 255, 255, 255),
                                       fontSize: 14),
-                                  enabledBorder: OutlineInputBorder(
+                                  enabledBorder: const OutlineInputBorder(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(25)),
                                       borderSide: BorderSide(
                                           color: Color.fromARGB(
                                               80, 255, 255, 255))),
-                                  focusedBorder: OutlineInputBorder(
+                                  focusedBorder: const OutlineInputBorder(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(25)),
                                       borderSide: BorderSide(
                                           color: Color.fromARGB(
                                               144, 255, 255, 255)))),
                               keyboardType: TextInputType.text,
-                              key: ValueKey('email'),
+                              key: const ValueKey('email'),
                               cursorColor:
                                   const Color.fromARGB(255, 221, 221, 221),
                             ),
@@ -142,7 +160,7 @@ class _MyPerfilState extends State<MyPerfil> {
                               obscureText: true,
                               style: const TextStyle(color: Colors.white),
                               decoration: const InputDecoration(
-                                  labelText: 'Senha',
+                                  labelText: '*******',
                                   labelStyle: TextStyle(
                                       color: Color.fromARGB(111, 255, 255, 255),
                                       fontSize: 14),
@@ -159,7 +177,7 @@ class _MyPerfilState extends State<MyPerfil> {
                                           color: Color.fromARGB(
                                               144, 255, 255, 255)))),
                               keyboardType: TextInputType.name,
-                              key: ValueKey('password'),
+                              key: const ValueKey('password'),
                               cursorColor:
                                   const Color.fromARGB(255, 221, 221, 221),
                               validator: (value) {
@@ -179,7 +197,7 @@ class _MyPerfilState extends State<MyPerfil> {
                               obscureText: true,
                               style: const TextStyle(color: Colors.white),
                               decoration: const InputDecoration(
-                                  labelText: 'Confirme sua senha',
+                                  labelText: '*******',
                                   labelStyle: TextStyle(
                                       color: Color.fromARGB(111, 255, 255, 255),
                                       fontSize: 14),
@@ -214,7 +232,7 @@ class _MyPerfilState extends State<MyPerfil> {
                       child: TextButton(
                         onPressed: () {},
                         child: const Text(
-                          'Registrar',
+                          'Atualizar',
                           style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
                       ),
