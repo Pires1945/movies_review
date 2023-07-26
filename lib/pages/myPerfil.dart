@@ -13,15 +13,25 @@ class MyPerfil extends StatefulWidget {
 }
 
 class _MyPerfilState extends State<MyPerfil> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   final user = AuthService().currentUser;
   final _formKey = GlobalKey<FormState>();
   final _passwordController = TextEditingController();
-  final bool update = true;
+  bool updateImage = false;
 
   final _formData = AuthFormData();
 
   void _handleImagePick(File image) {
     _formData.image = image;
+  }
+
+  void _updateImage() {
+    updateImage = true;
+    initState();
   }
 
   @override
@@ -59,8 +69,28 @@ class _MyPerfilState extends State<MyPerfil> {
                     Form(
                       child: Column(
                         children: [
-                          UserImagePicker(
-                              onImagePick: _handleImagePick, update: update),
+                          updateImage
+                              ? UserImagePicker(onImagePick: _handleImagePick)
+                              : Container(
+                                  child: CircleAvatar(
+                                    radius: 60,
+                                    backgroundColor: Colors.grey,
+                                    backgroundImage:
+                                        NetworkImage(user!.imageUrl),
+                                  ),
+                                ),
+                          Container(
+                            height: 30,
+                            margin: EdgeInsets.only(
+                                left: MediaQuery.of(context).size.width * 0.3),
+                            child: TextButton(
+                                onPressed: _updateImage,
+                                child: const Text(
+                                  'Trocar Foto',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 12),
+                                )),
+                          ),
                           Container(
                             height: 45,
                             child: TextFormField(

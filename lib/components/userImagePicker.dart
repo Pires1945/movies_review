@@ -5,10 +5,8 @@ import 'package:image_picker/image_picker.dart';
 
 class UserImagePicker extends StatefulWidget {
   final void Function(File image) onImagePick;
-  final bool update;
 
-  const UserImagePicker(
-      {super.key, required this.onImagePick, required this.update});
+  const UserImagePicker({super.key, required this.onImagePick});
 
   @override
   State<UserImagePicker> createState() => _UserImagePickerState();
@@ -44,18 +42,18 @@ class _UserImagePickerState extends State<UserImagePicker> {
         ),
         TextButton(
           onPressed: _pickImage,
-          child: Row(
+          child: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(
+              Icon(
                 Icons.image,
                 color: Colors.white,
               ),
-              const SizedBox(
+              SizedBox(
                 width: 10,
               ),
               Text(
-                widget.update ? 'Alterar imagem' : 'Adicionar Imagem',
+                'Adicionar Imagem',
                 style: const TextStyle(color: Colors.white),
               )
             ],
