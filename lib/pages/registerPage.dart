@@ -15,7 +15,7 @@ class RegisterPageForm extends StatefulWidget {
 class _RegisterPageFormState extends State<RegisterPageForm> {
   final _formKey = GlobalKey<FormState>();
   final _passwordController = TextEditingController();
-
+  bool _update = false;
   final _formData = AuthFormData();
 
   void _handleImagePick(File image) {
@@ -96,7 +96,10 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                       key: _formKey,
                       child: Column(
                         children: [
-                          UserImagePicker(onImagePick: _handleImagePick),
+                          UserImagePicker(
+                            onImagePick: _handleImagePick,
+                            update: _update,
+                          ),
                           Container(
                             height: 45,
                             child: TextFormField(
