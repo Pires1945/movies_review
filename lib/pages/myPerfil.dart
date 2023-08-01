@@ -66,19 +66,17 @@ class _MyPerfilState extends State<MyPerfil> {
                           Container(
                             height: 45,
                             child: TextFormField(
-                              style: const TextStyle(color: Colors.white),
-                              decoration: InputDecoration(
-                                labelText: user!.name,
-                                labelStyle: const TextStyle(
-                                    color: Color.fromARGB(111, 255, 255, 255),
-                                    fontSize: 14),
-                                enabledBorder: const OutlineInputBorder(
+                              initialValue: user!.name,
+                              style: const TextStyle(
+                                  color: Color.fromARGB(111, 255, 255, 255)),
+                              decoration: const InputDecoration(
+                                enabledBorder: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(25)),
                                     borderSide: BorderSide(
                                         color:
                                             Color.fromARGB(80, 255, 255, 255))),
-                                focusedBorder: const OutlineInputBorder(
+                                focusedBorder: OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(25)),
                                   borderSide: BorderSide(
@@ -103,19 +101,17 @@ class _MyPerfilState extends State<MyPerfil> {
                           Container(
                             height: 45,
                             child: TextFormField(
-                              style: const TextStyle(color: Colors.white),
-                              decoration: InputDecoration(
-                                  labelText: user!.nickname,
-                                  labelStyle: const TextStyle(
-                                      color: Color.fromARGB(111, 255, 255, 255),
-                                      fontSize: 14),
-                                  enabledBorder: const OutlineInputBorder(
+                              initialValue: user!.nickname,
+                              style: const TextStyle(
+                                  color: Color.fromARGB(111, 255, 255, 255)),
+                              decoration: const InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(25)),
                                       borderSide: BorderSide(
                                           color: Color.fromARGB(
                                               80, 255, 255, 255))),
-                                  focusedBorder: const OutlineInputBorder(
+                                  focusedBorder: OutlineInputBorder(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(25)),
                                       borderSide: BorderSide(
@@ -131,19 +127,20 @@ class _MyPerfilState extends State<MyPerfil> {
                           Container(
                             height: 45,
                             child: TextFormField(
-                              style: const TextStyle(color: Colors.white),
-                              decoration: InputDecoration(
-                                  labelText: user!.email,
-                                  labelStyle: const TextStyle(
+                              initialValue: user!.email,
+                              style: const TextStyle(
+                                  color: Color.fromARGB(111, 255, 255, 255)),
+                              decoration: const InputDecoration(
+                                  labelStyle: TextStyle(
                                       color: Color.fromARGB(111, 255, 255, 255),
                                       fontSize: 14),
-                                  enabledBorder: const OutlineInputBorder(
+                                  enabledBorder: OutlineInputBorder(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(25)),
                                       borderSide: BorderSide(
                                           color: Color.fromARGB(
                                               80, 255, 255, 255))),
-                                  focusedBorder: const OutlineInputBorder(
+                                  focusedBorder: OutlineInputBorder(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(25)),
                                       borderSide: BorderSide(
@@ -159,13 +156,11 @@ class _MyPerfilState extends State<MyPerfil> {
                           Container(
                             height: 45,
                             child: TextFormField(
+                              initialValue: user!.password,
                               obscureText: true,
-                              style: const TextStyle(color: Colors.white),
+                              style: const TextStyle(
+                                  color: Color.fromARGB(111, 255, 255, 255)),
                               decoration: const InputDecoration(
-                                  labelText: '*******',
-                                  labelStyle: TextStyle(
-                                      color: Color.fromARGB(111, 255, 255, 255),
-                                      fontSize: 14),
                                   enabledBorder: OutlineInputBorder(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(25)),
@@ -196,13 +191,11 @@ class _MyPerfilState extends State<MyPerfil> {
                           Container(
                             height: 45,
                             child: TextFormField(
+                              initialValue: user!.password,
                               obscureText: true,
-                              style: const TextStyle(color: Colors.white),
+                              style: const TextStyle(
+                                  color: Color.fromARGB(111, 255, 255, 255)),
                               decoration: const InputDecoration(
-                                  labelText: '*******',
-                                  labelStyle: TextStyle(
-                                      color: Color.fromARGB(111, 255, 255, 255),
-                                      fontSize: 14),
                                   enabledBorder: OutlineInputBorder(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(25)),
