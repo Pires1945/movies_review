@@ -19,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Stack(
         children: [
           Container(
-            color: Color.fromARGB(255, 221, 221, 221),
+            color: const Color.fromARGB(255, 221, 221, 221),
           ),
           Container(
             height: deviceSize.height * 0.5,
@@ -38,11 +38,11 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-          Container(
+          const SizedBox(
             width: double.infinity,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 LoginForm(),
               ],
             ),
